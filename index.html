@@ -2,15 +2,19 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>No's Archive</title>
 
 <style>
 
 *{
-box-sizing:border-box;
 margin:0;
 padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -18,43 +22,52 @@ font-family:
 "Hiragino Sans",
 "Yu Gothic",
 sans-serif;
-
 background:#f5f5f5;
-color:#333;
+color:#222;
 }
 
-/* パスワード画面 */
+/* =====================
+ LOGIN
+===================== */
 
 #auth{
 
-height:100vh;
+position:fixed;
+inset:0;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
+
+background:#f5f5f5;
+
+z-index:9999;
 }
 
 .auth-card{
 
 background:white;
 
+width:min(420px,90vw);
+
 padding:40px;
 
-border-radius:20px;
+border-radius:18px;
 
 box-shadow:
 0 10px 30px rgba(0,0,0,.08);
-
-width:min(420px,90vw);
 
 text-align:center;
 }
 
 .auth-card h1{
 
-margin-bottom:20px;
+margin-bottom:10px;
+}
+
+.auth-card p{
+
+opacity:.7;
 }
 
 .auth-card input{
@@ -63,10 +76,9 @@ width:100%;
 
 padding:12px;
 
-margin-top:20px;
+margin-top:18px;
 
-border:
-1px solid #ddd;
+border:1px solid #ddd;
 
 border-radius:10px;
 }
@@ -81,140 +93,216 @@ border:none;
 
 border-radius:10px;
 
-cursor:pointer;
-
-background:#222;
+background:#111;
 
 color:white;
+
+cursor:pointer;
 }
 
 #msg{
 
 margin-top:15px;
 
+font-size:14px;
+
 opacity:.7;
 }
 
-/* 本体 */
+/* =====================
+ SITE
+===================== */
 
 #site{
 display:none;
 }
 
-/* ヘッダー */
-
-header{
-
-background:white;
-
-padding:20px;
+.layout{
 
 display:flex;
 
-justify-content:space-between;
+min-height:100vh;
+}
 
-align-items:center;
+/* =====================
+ SIDEBAR
+===================== */
 
-box-shadow:
-0 1px 6px rgba(0,0,0,.05);
+.sidebar{
+
+width:240px;
+
+background:white;
+
+padding:25px;
 
 position:sticky;
 
 top:0;
 
-z-index:100;
+height:100vh;
+
+box-shadow:
+1px 0 10px rgba(0,0,0,.05);
 }
 
 .logo{
 
-font-size:28px;
+font-size:30px;
 
 font-weight:bold;
+
+margin-bottom:5px;
 }
 
 .sub{
 
 font-size:12px;
 
-opacity:.6;
+opacity:.55;
+
+margin-bottom:30px;
 }
 
-/* ヒーロー */
-
-.hero{
-
-max-width:1200px;
-
-margin:30px auto;
-
-padding:0 20px;
-}
-
-.hero-card{
-
-height:320px;
-
-border-radius:24px;
-
-background:#ffffff;
-
-box-shadow:
-0 8px 24px rgba(0,0,0,.08);
-
-padding:40px;
+.menu{
 
 display:flex;
 
 flex-direction:column;
 
-justify-content:center;
+gap:8px;
 }
 
-.hero-card h2{
-
-font-size:42px;
-}
-
-.hero-card p{
-
-margin-top:10px;
-
-opacity:.7;
-}
-
-.hero-card a{
-
-margin-top:20px;
-
-width:180px;
-
-text-align:center;
-
-padding:14px;
-
-background:#222;
-
-color:white;
+.menu a{
 
 text-decoration:none;
 
-border-radius:12px;
+color:#333;
+
+padding:10px 12px;
+
+border-radius:8px;
 }
 
-/* セクション */
+.menu a:hover{
+
+background:#f2f2f2;
+}
+
+.divider{
+
+height:1px;
+
+background:#eee;
+
+margin:25px 0;
+}
+
+/* =====================
+ MAIN
+===================== */
+
+.main{
+
+flex:1;
+
+padding:30px;
+}
+
+/* =====================
+ HERO
+===================== */
+
+.hero{
+
+position:relative;
+
+height:380px;
+
+overflow:hidden;
+
+border-radius:18px;
+
+background:#ddd;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,.08);
+}
+
+.hero img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+}
+
+.hero-info{
+
+position:absolute;
+
+left:40px;
+
+bottom:40px;
+
+background:
+rgba(0,0,0,.6);
+
+padding:20px;
+
+border-radius:12px;
+
+color:white;
+
+max-width:420px;
+}
+
+.hero-info h2{
+
+font-size:36px;
+
+margin-bottom:8px;
+}
+
+.hero-info p{
+
+line-height:1.7;
+}
+
+.hero-info a{
+
+display:inline-block;
+
+margin-top:12px;
+
+padding:10px 18px;
+
+background:white;
+
+color:#111;
+
+text-decoration:none;
+
+border-radius:10px;
+
+font-weight:bold;
+}
+
+/* =====================
+ SECTION
+===================== */
 
 .section{
 
-max-width:1200px;
-
-margin:40px auto;
-
-padding:0 20px;
+margin-top:45px;
 }
 
-.section h3{
+.section h2{
 
 margin-bottom:15px;
+
+font-size:22px;
 }
 
 .cards{
@@ -230,90 +318,153 @@ padding-bottom:10px;
 
 .card{
 
-flex:0 0 220px;
+flex:0 0 190px;
 
 background:white;
 
-border-radius:18px;
+border-radius:14px;
 
 overflow:hidden;
-
-box-shadow:
-0 6px 18px rgba(0,0,0,.08);
 
 text-decoration:none;
 
 color:inherit;
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.06);
+
+transition:.2s;
 }
 
-.thumb{
+.card:hover{
 
-height:280px;
-
-background:#ddd;
+transform:translateY(-3px);
 }
 
-.info{
+.card img{
 
-padding:15px;
+width:100%;
+
+height:270px;
+
+object-fit:cover;
 }
 
-.info h4{
+.card-body{
 
-margin-bottom:8px;
+padding:12px;
 }
 
-.info p{
+.card-body h3{
 
-font-size:13px;
+font-size:15px;
+
+margin-bottom:5px;
+}
+
+.card-body p{
+
+font-size:12px;
 
 opacity:.7;
 }
 
-/* 更新履歴 */
+/* =====================
+ UPDATE
+===================== */
 
 .news{
 
 background:white;
 
-padding:25px;
+padding:20px;
 
-border-radius:18px;
+border-radius:14px;
 
 box-shadow:
-0 6px 18px rgba(0,0,0,.08);
+0 4px 12px rgba(0,0,0,.06);
+}
+
+.news ul{
+
+list-style:none;
 }
 
 .news li{
 
-margin:10px 0;
+padding:8px 0;
+
+border-bottom:
+1px solid #eee;
 }
 
-/* フッター */
+.news li:last-child{
 
-footer{
+border:none;
+}
 
-margin-top:60px;
+/* =====================
+ FOOTER
+===================== */
 
-padding:40px;
+.footer{
+
+margin-top:50px;
 
 text-align:center;
 
-background:white;
+font-size:12px;
+
+opacity:.5;
 }
 
-footer img{
+/* =====================
+ MOBILE
+===================== */
 
-width:48px;
+@media(max-width:900px){
 
-margin:0 10px;
+.layout{
+flex-direction:column;
+}
+
+.sidebar{
+
+width:100%;
+
+height:auto;
+
+position:relative;
+}
+
+.main{
+
+padding:20px;
+}
+
+.hero{
+
+height:240px;
+}
+
+.hero-info{
+
+left:15px;
+right:15px;
+bottom:15px;
+}
+
+.hero-info h2{
+
+font-size:24px;
+}
+
 }
 
 </style>
 </head>
-<body>
 
-<!-- パスワード -->
+<body>
 
 <div id="auth">
 
@@ -340,29 +491,59 @@ ENTER
 
 </div>
 
-<!-- 本体 -->
-
 <div id="site">
 
-<header>
+<div class="layout">
 
-<div>
+<aside class="sidebar">
 
 <div class="logo">
 No's Archive
 </div>
 
 <div class="sub">
-Comics / Novels / Illustrations / MMD
+Comic / Novel / Illustration / MMD
 </div>
 
-</div>
+<nav class="menu">
 
-</header>
+<a href="#">
+HOME
+</a>
+
+<a href="#comic">
+COMIC
+</a>
+
+<a href="#novel">
+NOVEL
+</a>
+
+<a href="#illust">
+ILLUSTRATION
+</a>
+
+<a href="#mmd">
+MMD
+</a>
+
+<div class="divider"></div>
+
+<a href="#history">
+更新履歴
+</a>
+
+</nav>
+
+</aside>
+
+<main class="main">
 
 <section class="hero">
 
-<div class="hero-card">
+<img src="images/comic01_s.png" alt="banner">
+
+<div class="hero-info">
 
 <h2>#door</h2>
 
@@ -371,88 +552,120 @@ Comics / Novels / Illustrations / MMD
 </p>
 
 <a href="comic.html">
-無料で読む
+読む
 </a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section id="comic" class="section">
 
-<h3>COMIC</h3>
+<h2>COMIC</h2>
+
+<div class="cards">
+
+<a class="card" href="comic.html">
+
+<img src="images/comic01_s.png">
+
+<div class="card-body">
+
+<h3>#door</h3>
+
+<p>
+漫画＋追加資料
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+<section id="novel" class="section">
+
+<h2>NOVEL</h2>
 
 <div class="cards">
 
 <a class="card" href="#">
-<div class="thumb"></div>
-<div class="info">
-<h4>#door</h4>
-<p>漫画＋資料</p>
+
+<img src="images/comic01_s.png">
+
+<div class="card-body">
+
+<h3>準備中</h3>
+
+<p>
+短編小説
+</p>
+
 </div>
+
 </a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section id="illust" class="section">
 
-<h3>NOVEL</h3>
+<h2>ILLUSTRATION</h2>
 
 <div class="cards">
 
 <a class="card" href="#">
-<div class="thumb"></div>
-<div class="info">
-<h4>タイトル</h4>
-<p>短編小説</p>
+
+<img src="images/comic01_s.png">
+
+<div class="card-body">
+
+<h3>イラスト集</h3>
+
+<p>
+作品まとめ
+</p>
+
 </div>
+
 </a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section id="mmd" class="section">
 
-<h3>ILLUSTRATION</h3>
+<h2>MMD</h2>
 
 <div class="cards">
 
 <a class="card" href="#">
-<div class="thumb"></div>
-<div class="info">
-<h4>イラスト集</h4>
-<p>まとめ</p>
+
+<img src="images/comic01_s.png">
+
+<div class="card-body">
+
+<h3>MMD作品</h3>
+
+<p>
+動画作品
+</p>
+
 </div>
+
 </a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section id="history" class="section">
 
-<h3>MMD</h3>
-
-<div class="cards">
-
-<a class="card" href="#">
-<div class="thumb"></div>
-<div class="info">
-<h4>MMD</h4>
-<p>動画作品</p>
-</div>
-</a>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h3>更新履歴</h3>
+<h2>更新履歴</h2>
 
 <div class="news">
 
@@ -460,9 +673,9 @@ Comics / Novels / Illustrations / MMD
 
 <li>2026.05.25　#door追加資料公開</li>
 
-<li>2026.05.18　MMD動画追加</li>
+<li>2026.05.20　イラスト更新</li>
 
-<li>2026.05.10　イラスト更新</li>
+<li>2026.05.10　MMD作品追加</li>
 
 </ul>
 
@@ -470,47 +683,45 @@ Comics / Novels / Illustrations / MMD
 
 </section>
 
-<footer>
+<div class="footer">
 
-<a href="https://x.com/Tti_sbr">
-<img src="pages/x-icon.png">
-</a>
+No's Archive
 
-<a href="https://pan-souko.booth.pm/">
-<img src="pages/booth-icon.png">
-</a>
+</div>
 
-</footer>
+</main>
+
+</div>
 
 </div>
 
 <script>
+
+const auth =
+document.getElementById("auth");
+
+const site =
+document.getElementById("site");
 
 if(
 localStorage.getItem("archive_auth")
 ==="ok"
 ){
 
-document.getElementById(
-"auth"
-).style.display="none";
-
-document.getElementById(
-"site"
-).style.display="block";
+auth.style.display="none";
+site.style.display="block";
 
 }
 
 function login(){
 
-const pw=
-document.getElementById("pw")
-.value;
+const pw =
+document.getElementById("pw").value;
 
-const msg=
+const msg =
 document.getElementById("msg");
 
-msg.textContent=
+msg.textContent =
 "Checking access...";
 
 setTimeout(()=>{
@@ -524,17 +735,12 @@ localStorage.setItem(
 "ok"
 );
 
-document
-.getElementById("auth")
-.style.display="none";
-
-document
-.getElementById("site")
-.style.display="block";
+auth.style.display="none";
+site.style.display="block";
 
 }else{
 
-msg.textContent=
+msg.textContent =
 "パスワードが違います";
 
 }
