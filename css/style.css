@@ -106,32 +106,39 @@ body{
 /* Message */
 
 .sidebar-message{
-  background:#f4f4f4;
 
-  padding:10px;
+  background:#cfdff2;
 
-  border-radius:10px;
+  padding:12px;
 
-  margin-bottom:12px;
+  border-radius:12px;
+
+  margin:14px 0;
 
   font-size:13px;
 
   line-height:1.6;
 
-  box-shadow:none;
+  box-shadow:
+  0 2px 8px rgba(0,0,0,.08);
 }
 
 /* Receipt */
 
 .receipt{
+
   position:sticky;
   top:92px;
+
+  position:relative;
 
   background:var(--paper);
 
   padding:22px;
 
   margin-top:0;
+
+  overflow:visible;
 
   box-shadow:
   0 8px 16px rgba(0,0,0,.10),
@@ -147,15 +154,23 @@ body{
   left:0;
   right:0;
 
-  bottom:-14px;
+  bottom:-10px;
 
-  height:14px;
+  height:10px;
 
   background:
-  linear-gradient(-45deg,transparent 10px,#FFFDF8 0) bottom left,
-  linear-gradient(45deg,transparent 10px,#FFFDF8 0) bottom right;
+  linear-gradient(
+    -45deg,
+    transparent 5px,
+    var(--paper) 0
+  ),
+  linear-gradient(
+    45deg,
+    transparent 5px,
+    var(--paper) 0
+  );
 
-  background-size:20px 20px;
+  background-size:10px 10px;
 
   background-repeat:repeat-x;
 }
