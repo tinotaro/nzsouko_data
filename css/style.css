@@ -1,6 +1,6 @@
 
 /* =====================================
-   No's Archive Complete Theme
+   No's Archive Final Theme
 ===================================== */
 
 :root{
@@ -13,11 +13,7 @@
   --text:#222;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'M PLUS Rounded 1c',sans-serif;
@@ -29,9 +25,7 @@ body{
 
 .header{
   position:fixed;
-  top:0;
-  left:0;
-  right:0;
+  top:0;left:0;right:0;
   height:84px;
   background:#fff;
   border-bottom:1px solid #dce5ef;
@@ -92,10 +86,24 @@ body{
 /* Sidebar */
 
 .sidebar{
-  width:230px;
+  width:210px;
   background:var(--sidebar);
-  padding:0 20px 20px;
+  padding:0 14px 20px;
 }
+
+/* Message */
+
+.sidebar-message{
+  background:#cfdff2;
+  padding:14px;
+  border-radius:14px;
+  margin:12px 0;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* Receipt */
 
 .receipt{
   position:sticky;
@@ -103,6 +111,7 @@ body{
   background:var(--paper);
   padding:22px;
   margin-top:-6px;
+  font-family:"Courier New",monospace;
   box-shadow:
   0 10px 20px rgba(0,0,0,.12),
   0 24px 40px rgba(0,0,0,.08);
@@ -111,8 +120,7 @@ body{
 .receipt::after{
   content:"";
   position:absolute;
-  left:0;
-  right:0;
+  left:0;right:0;
   bottom:-12px;
   height:12px;
 
@@ -127,6 +135,7 @@ body{
 .rtitle{
   text-align:center;
   font-weight:800;
+  letter-spacing:1px;
 }
 
 .small{
@@ -145,7 +154,6 @@ body{
   padding:8px 0;
   color:#222;
   text-decoration:none;
-  font-family:monospace;
   font-weight:700;
 }
 
@@ -154,13 +162,6 @@ body{
 }
 
 /* Character */
-
-.speech{
-  background:#f7f7f7;
-  padding:10px;
-  border-radius:10px;
-  font-size:13px;
-}
 
 .chara{
   width:120px;
@@ -171,18 +172,22 @@ body{
 .social{
   display:flex;
   justify-content:center;
-  gap:14px;
+  align-items:center;
+  gap:18px;
 }
 
-.social img{
-  width:50px;
-  height:50px;
-  object-fit:contain;
+.social a{
   transition:.2s;
 }
 
-.social img:hover{
+.social a:hover{
   transform:translateY(-2px);
+}
+
+.social img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
 }
 
 /* Hero */
@@ -245,9 +250,7 @@ body{
   display:block;
 }
 
-.info{
-  padding:10px;
-}
+.info{padding:10px;}
 
 .title{
   font-weight:800;
@@ -286,6 +289,26 @@ body{
   color:#666;
 }
 
+/* Banner Links */
+
+.banner-link{
+  display:block;
+  overflow:hidden;
+  border-radius:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.banner-link:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.banner-link img{
+  width:100%;
+  display:block;
+}
+
 /* Update */
 
 .update{
@@ -298,30 +321,16 @@ body{
 /* Mobile */
 
 @media (max-width:900px){
-
-  .layout{
-    display:block;
-  }
-
-  .sidebar{
-    width:100%;
-  }
-
-  .hero{
-    height:260px;
-  }
+  .layout{display:block;}
+  .sidebar{width:100%;}
+  .hero{height:260px;}
 }
 
 @media (max-width:700px){
-
-  .search{
-    display:none;
-  }
-
+  .search{display:none;}
   .grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
-
   .card img{
     height:220px;
   }
