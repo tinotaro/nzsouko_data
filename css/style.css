@@ -442,3 +442,8 @@ transform:translateY(-3px);
 .hidden{
 display:none;
 }
+.player-title{
+font-family:'Dela Gothic One',sans-serif;
+font-size:32px;
+margin-bottom:12px;
+}
