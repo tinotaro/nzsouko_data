@@ -100,7 +100,8 @@ body{
 .sidebar{
   width:170px;
   background:var(--sidebar);
-  padding:0 14px 20px;
+
+  padding:0 10px 20px;
 }
 
 /* Message */
@@ -126,19 +127,15 @@ body{
 /* Receipt */
 
 .receipt{
-
-  position:relative;
-  top:92px;
-
   position:relative;
 
   background:var(--paper);
 
   padding:22px;
 
-  margin-top:0;
+  margin:0;          /* ←重要 */
 
-  overflow:visible;
+  top:0;             /* ←消す */
 
   box-shadow:
   0 8px 16px rgba(0,0,0,.10),
