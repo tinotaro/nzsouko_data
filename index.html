@@ -1,74 +1,165 @@
 <!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8">
+<html lang="ja">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>No's Archive</title>
-<style>
-:root{--accent:#A590AF}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f4f4f4;color:#222}
-#auth{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#f4f4f4;z-index:999}
-.auth{background:#fff;padding:40px;border-radius:16px;width:min(420px,90vw)}
-.auth input{width:100%;padding:12px;margin:10px 0}
-.auth button{padding:12px 20px;background:#111;color:#fff;border:none}
 
-#site{display:none}
-.header{background:#111;color:#fff;padding:14px 24px;display:flex;justify-content:space-between}
-.search{padding:10px 14px;border-radius:20px;border:none;width:320px}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--accent:#A590AF;
+--success:#7BBF8A;
+--dark:#111;
+--side:#1f1f1f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:'M PLUS Rounded 1c',sans-serif;
+background:#f4f4f4;
+color:#222;
+}
+.header{
+background:var(--dark);
+color:#fff;
+padding:14px 24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+.logo{
+font-family:'Dela Gothic One',sans-serif;
+font-size:26px;
+}
+.search{
+width:320px;
+max-width:45vw;
+padding:10px 14px;
+border-radius:20px;
+border:none;
+}
 .layout{display:flex}
-.sidebar{width:220px;background:#1f1f1f;min-height:100vh;padding:20px}
-.sidebar a{display:block;color:#fff;text-decoration:none;padding:12px;border-radius:8px}
+.sidebar{
+width:220px;
+background:var(--side);
+min-height:100vh;
+padding:20px;
+}
+.sidebar a{
+display:block;
+color:#fff;
+text-decoration:none;
+padding:12px;
+border-radius:10px;
+margin-bottom:6px;
+transition:.2s;
+}
 .sidebar a:hover{background:var(--accent)}
 .main{flex:1;padding:20px}
 
-.big{height:420px;position:relative;overflow:hidden;border-radius:16px}
+.hero{height:420px;border-radius:16px;overflow:hidden;position:relative}
 .slide{position:absolute;inset:0;opacity:0;transition:.8s}
 .slide.active{opacity:1}
 .slide img{width:100%;height:100%;object-fit:cover}
+
 .thumbs{display:flex;gap:10px;margin-top:10px;overflow:auto}
-.thumb{width:240px;height:90px;overflow:hidden;border-radius:10px;border:3px solid transparent}
+.thumb{width:220px;height:80px;overflow:hidden;border-radius:10px;cursor:pointer;border:3px solid transparent}
 .thumb.active{border-color:var(--accent)}
 .thumb img{width:100%;height:100%;object-fit:cover}
 
-.section{margin-top:30px}
-.section h2{border-left:5px solid var(--accent);padding-left:10px;margin-bottom:14px}
-
-.rank-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.card{background:#fff;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.06)}
-.card img{width:100%;height:320px;object-fit:cover}
-.badge{position:absolute;top:10px;left:10px;background:#d91f26;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
-.rank{position:absolute;top:10px;right:10px;background:#111;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.body{padding:12px}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.tag{background:#eee;padding:3px 8px;border-radius:20px;font-size:11px}
-.bookshelf{background:linear-gradient(#8b5a2b,#6b4320);height:18px;border-radius:0 0 8px 8px}
-.hover{position:absolute;inset:0;background:rgba(0,0,0,.92);color:#fff;padding:16px;opacity:0;transition:.2s}
-.card:hover .hover{opacity:1}
-
-.card{text-decoration:none;color:#222;display:block}
-@media(max-width:700px){
-.header{flex-direction:column;gap:10px}
-.search{width:100%}
-.rank-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card img{height:240px}
-.thumbs{gap:6px}
-.thumb{width:140px;height:60px}
-.body b{font-size:14px}
-.tags{display:none}
+.section{margin-top:34px}
+.section h2{
+font-family:'Dela Gothic One',sans-serif;
+border-left:6px solid var(--accent);
+padding-left:12px;
+margin-bottom:16px;
 }
-@media(max-width:900px){.layout{display:block}.sidebar{width:100%;min-height:auto}.big{height:240px}}
-</style></head><body>
-<div id="auth"><div class="auth"><h1>No's Archive</h1><input id="pw" type="password"><button onclick="login()">ENTER</button><p id="msg"></p></div></div>
 
-<div id="site">
-<div class="header"><div>No's Archive</div><input class="search" placeholder="作品検索（仮）"></div>
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:16px;
+}
+
+.card{
+background:#fff;
+border-radius:14px;
+overflow:hidden;
+text-decoration:none;
+color:#222;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+transition:.2s;
+position:relative;
+display:block;
+}
+.card:hover{
+transform:translateY(-6px) scale(1.02);
+}
+.card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+.body{padding:12px}
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:var(--accent);
+color:#fff;
+padding:4px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:bold;
+}
+.update{
+background:#fff;
+padding:18px;
+border-radius:14px;
+line-height:2;
+}
+.date{color:var(--success);font-weight:bold}
+
+@media(max-width:900px){
+.layout{display:block}
+.sidebar{width:100%;min-height:auto}
+.hero{height:240px}
+}
+@media(max-width:700px){
+.search{width:100%}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card img{height:240px}
+.thumb{width:120px;height:50px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="logo">No's Archive</div>
+<input class="search" placeholder="作品検索（仮）">
+</header>
+
 <div class="layout">
+
 <nav class="sidebar">
-<a href="#ranking">RANKING</a>
-<a href="#comic">COMIC</a>
+<a href="#new">🆕 NEW</a>
+<a href="#comic">📚 COMIC</a>
+<a href="#novel">📖 NOVEL</a>
+<a href="#illust">🖼 ILLUSTRATION</a>
+<a href="mmd.html">🎬 MMD</a>
+<a href="#update">📝 UPDATE</a>
 </nav>
+
 <main class="main">
 
-<div class="big">
+<div class="hero">
 <div class="slide active"><img src="images/comic01_s.png"></div>
 <div class="slide"><img src="images/comic02_s.png"></div>
 <div class="slide"><img src="images/comic03_s.png"></div>
@@ -84,39 +175,64 @@ body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f4f4f4;color:
 <div class="thumb"><img src="images/comic05_s.png"></div>
 </div>
 
-<section id="ranking" class="section">
-<h2>人気ランキング</h2>
-<div class="rank-grid">
-
-<a class="card" href="comic01_p.html"><span class="badge">NEW</span><span class="rank">1</span><img src="images/comic01_p.png"><div class="body"><b>#door</b><div class="tags"><span class="tag">資料集</span><span class="tag">ホラー</span><span class="tag">SF</span></div></div><div class="hover">異常な記録媒体を巡る物語。追加資料あり。</div><div class="bookshelf"></div></a>
-
-<a class="card" href="comic02_p.html"><span class="badge">NEW</span><span class="rank">2</span><img src="images/comic02_p.png"><div class="body"><b>背いて、隠して、知らないで</b><div class="tags"><span class="tag">恋愛</span><span class="tag">社会人</span><span class="tag">切ない</span></div></div><div class="hover">一晩だけのお願いとひみつの恋の話。</div><div class="bookshelf"></div></a>
-
-<a class="card" href="comic03_p.html"><span class="rank">3</span><img src="images/comic03_p.png"><div class="body"><b>眠らぬシリウス</b><div class="tags"><span class="tag">天使</span><span class="tag">教祖</span><span class="tag">幻想</span></div></div><div class="hover">黒髪の少年を見に来た天使の男の話。</div><div class="bookshelf"></div></a>
-
-<a class="card" href="comic04_p.html"><span class="rank">4</span><img src="images/comic04_p.png"><div class="body"><b>おやすみ、かみさま おはよう、あなた</b><div class="tags"><span class="tag">四神</span><span class="tag">中華風</span><span class="tag">転生</span></div></div><div class="hover">神様をやめた少年の生まれ変わりを待つ話。</div><div class="bookshelf"></div></a>
-
-<a class="card" href="comic05_p.html"><span class="badge">NEW</span><span class="rank">5</span><img src="images/comic05_p.png"><div class="body"><b>ONLY YOU!</b><div class="tags"><span class="tag">ギャグ</span><span class="tag">初恋</span><span class="tag">本屋</span></div></div><div class="hover">恋愛が下手なふたりの初恋こじらせコメディ。</div><div class="bookshelf"></div></a>
-
+<section id="new" class="section">
+<h2>NEW ARRIVALS</h2>
+<div class="grid">
+<a class="card" href="comic05_p.html"><span class="badge">NEW</span><img src="images/comic05_p.png"><div class="body">ONLY YOU!</div></a>
+<a class="card" href="comic04_p.html"><span class="badge">NEW</span><img src="images/comic04_p.png"><div class="body">おやすみ、かみさま おはよう、あなた</div></a>
+<a class="card" href="comic03_p.html"><span class="badge">NEW</span><img src="images/comic03_p.png"><div class="body">眠らぬシリウス</div></a>
 </div>
 </section>
 
-<section id="comic" class="section"><h2>本棚</h2><div class="rank-grid">
-<a class="card" href="comic01_p.html"><img src="images/comic01_p.png"><div class="body">#door</div><div class="bookshelf"></div></a>
-<a class="card" href="comic02_p.html"><img src="images/comic02_p.png"><div class="body">背いて、隠して、知らないで</div><div class="bookshelf"></div></a>
-<a class="card" href="comic03_p.html"><img src="images/comic03_p.png"><div class="body">眠らぬシリウス</div><div class="bookshelf"></div></a>
-<a class="card" href="comic04_p.html"><img src="images/comic04_p.png"><div class="body">おやすみ、かみさま おはよう、あなた</div><div class="bookshelf"></div></a>
-<a class="card" href="comic05_p.html"><img src="images/comic05_p.png"><div class="body">ONLY YOU!</div><div class="bookshelf"></div></a>
+<section id="comic" class="section">
+<h2>📚 COMIC</h2>
+<div class="grid">
+<a class="card" href="comic01_p.html"><img src="images/comic01_p.png"><div class="body">comic01</div></a><a class="card" href="comic02_p.html"><img src="images/comic02_p.png"><div class="body">comic02</div></a><a class="card" href="comic03_p.html"><img src="images/comic03_p.png"><div class="body">comic03</div></a><a class="card" href="comic04_p.html"><img src="images/comic04_p.png"><div class="body">comic04</div></a><a class="card" href="comic05_p.html"><img src="images/comic05_p.png"><div class="body">comic05</div></a>
 </div></section>
 
-</main></div></div>
+<section id="novel" class="section">
+<h2>📖 NOVEL</h2>
+<div class="grid">
+<a class="card" href="novel01_p.html"><img src="images/novel01_p.png"><div class="body">novel01</div></a><a class="card" href="novel02_p.html"><img src="images/novel02_p.png"><div class="body">novel02</div></a><a class="card" href="novel03_p.html"><img src="images/novel03_p.png"><div class="body">novel03</div></a><a class="card" href="novel04_p.html"><img src="images/novel04_p.png"><div class="body">novel04</div></a><a class="card" href="novel05_p.html"><img src="images/novel05_p.png"><div class="body">novel05</div></a>
+</div></section>
+
+<section id="illust" class="section">
+<h2>🖼 ILLUSTRATION</h2>
+<div class="grid">
+<a class="card" href="illust01_r.html"><img src="images/illust01_p.png"><div class="body">Archive 1</div></a><a class="card" href="illust02_r.html"><img src="images/illust02_p.png"><div class="body">Archive 2</div></a><a class="card" href="illust03_r.html"><img src="images/illust03_p.png"><div class="body">Archive 3</div></a><a class="card" href="illust04_r.html"><img src="images/illust04_p.png"><div class="body">Archive 4</div></a><a class="card" href="illust05_r.html"><img src="images/illust05_p.png"><div class="body">Archive 5</div></a>
+</div></section>
+
+<section id="mmd" class="section">
+<h2>🎬 MMD</h2>
+<div class="grid">
+<a class="card" href="mmd01_p.html"><img src="images/mmd01_p.png"><div class="body">MMD 01</div></a><a class="card" href="mmd02_p.html"><img src="images/mmd02_p.png"><div class="body">MMD 02</div></a><a class="card" href="mmd03_p.html"><img src="images/mmd03_p.png"><div class="body">MMD 03</div></a><a class="card" href="mmd04_p.html"><img src="images/mmd04_p.png"><div class="body">MMD 04</div></a><a class="card" href="mmd05_p.html"><img src="images/mmd05_p.png"><div class="body">MMD 05</div></a>
+</div></section>
+
+<section id="update" class="section">
+<h2>📝 UPDATE</h2>
+<div class="update">
+<div><span class="date">2026.05.25</span>　ONLY YOU! 公開</div>
+<div><span class="date">2026.05.22</span>　Archive Room 更新</div>
+<div><span class="date">2026.05.20</span>　眠らぬシリウス 更新</div>
+</div>
+</section>
+
+</main></div>
 
 <script>
-const a=document.getElementById('auth'),s=document.getElementById('site');
-if(localStorage.archive_auth==='ok'){a.style.display='none';s.style.display='block'}
-function login(){if(document.getElementById('pw').value==='Lt0pp0hz'){localStorage.archive_auth='ok';a.style.display='none';s.style.display='block'}else{msg.textContent='パスワードが違います'}}
-const slides=document.querySelectorAll('.slide'),thumbs=document.querySelectorAll('.thumb');let c=0;
-function show(i){slides[c].classList.remove('active');thumbs[c].classList.remove('active');c=i;slides[c].classList.add('active');thumbs[c].classList.add('active');}
-thumbs.forEach((t,i)=>t.onclick=()=>show(i));setInterval(()=>show((c+1)%slides.length),5000);
+const slides=document.querySelectorAll('.slide');
+const thumbs=document.querySelectorAll('.thumb');
+let current=0;
+function show(i){
+slides[current].classList.remove('active');
+thumbs[current].classList.remove('active');
+current=i;
+slides[current].classList.add('active');
+thumbs[current].classList.add('active');
+}
+thumbs.forEach((t,i)=>t.onclick=()=>show(i));
+setInterval(()=>show((current+1)%slides.length),5000);
 </script>
-</body></html>
+
+</body>
+</html>

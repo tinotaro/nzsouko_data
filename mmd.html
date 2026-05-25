@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MMD Template</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--accent:#A590AF;
+--dark:#111;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'M PLUS Rounded 1c',sans-serif;
+background:#f4f4f4;
+color:#222;
+}
+
+.header{
+background:#111;
+padding:14px 24px;
+color:white;
+}
+
+.header a{
+color:white;
+text-decoration:none;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:24px;
+}
+
+/* fake youtube player */
+
+.player{
+background:#000;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+aspect-ratio:16/9;
+cursor:pointer;
+}
+
+.player img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.play{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+font-size:90px;
+color:white;
+text-shadow:0 0 20px rgba(0,0,0,.4);
+pointer-events:none;
+}
+
+.info{
+background:white;
+margin-top:18px;
+padding:20px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.title{
+font-family:'Dela Gothic One',sans-serif;
+font-size:32px;
+margin-bottom:12px;
+}
+
+.meta{
+line-height:2;
+}
+
+.watch{
+display:inline-block;
+margin-top:14px;
+padding:12px 20px;
+background:var(--accent);
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+/* tabs */
+
+.tabs{
+display:flex;
+gap:10px;
+margin-top:24px;
+}
+
+.tab{
+border:none;
+padding:12px 18px;
+background:white;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.tab.active{
+background:var(--accent);
+color:white;
+}
+
+/* gallery */
+
+.panel{
+margin-top:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:12px;
+}
+
+.thumb{
+background:white;
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+transition:.2s;
+}
+
+.thumb:hover{
+transform:translateY(-3px);
+}
+
+.thumb img{
+width:100%;
+height:160px;
+object-fit:cover;
+display:block;
+}
+
+.thumb div{
+padding:8px;
+font-size:13px;
+}
+
+.hidden{
+display:none;
+}
+
+@media(max-width:700px){
+
+.title{
+font-size:24px;
+}
+
+.grid{
+grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.thumb img{
+height:120px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html">← No's Archive</a>
+</div>
+
+<div class="container">
+
+<div class="player" id="player">
+<img id="playerImg" src="images/mmd01_s.png">
+<div class="play">▶</div>
+</div>
+
+<div class="info">
+
+<div class="title" id="title">
+MMD作品タイトル
+</div>
+
+<div class="meta">
+<b>曲名：</b><span id="song">DAYBREAK FRONTLINE</span><br>
+<b>説明：</b><span id="desc">作品説明が入ります。</span>
+</div>
+
+<a id="watchBtn"
+class="watch"
+href="https://youtube.com/"
+target="_blank">
+▶ YouTubeで見る
+</a>
+
+</div>
+
+<div class="tabs">
+<button class="tab active" onclick="showTab('video',this)">動画</button>
+<button class="tab" onclick="showTab('shorts',this)">Shorts</button>
+</div>
+
+<div id="videoPanel" class="panel">
+
+<div class="grid">
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_ss01.webp',
+'Scene 01',
+'お気に入りシーン①',
+'https://youtu.be/example?t=15'
+)">
+<img src="images/mmd01_ss01.webp">
+<div>Scene 01</div>
+</div>
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_ss02.webp',
+'Scene 02',
+'お気に入りシーン②',
+'https://youtu.be/example?t=45'
+)">
+<img src="images/mmd01_ss02.webp">
+<div>Scene 02</div>
+</div>
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_ss03.webp',
+'Scene 03',
+'お気に入りシーン③',
+'https://youtu.be/example?t=80'
+)">
+<img src="images/mmd01_ss03.webp">
+<div>Scene 03</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="shortPanel" class="panel hidden">
+
+<div class="grid">
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_short01.png',
+'Short #01',
+'Shorts動画',
+'https://youtube.com/shorts/example1'
+)">
+<img src="images/mmd01_short01.png">
+<div>Short #01</div>
+</div>
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_short02.png',
+'Short #02',
+'Shorts動画',
+'https://youtube.com/shorts/example2'
+)">
+<img src="images/mmd01_short02.png">
+<div>Short #02</div>
+</div>
+
+<div class="thumb"
+onclick="selectItem(
+'images/mmd01_short03.png',
+'Short #03',
+'Shorts動画',
+'https://youtube.com/shorts/example3'
+)">
+<img src="images/mmd01_short03.png">
+<div>Short #03</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function selectItem(img,title,desc,url){
+
+document.getElementById('playerImg').src=img;
+
+document.getElementById('song').textContent=title;
+
+document.getElementById('desc').textContent=desc;
+
+document.getElementById('watchBtn').href=url;
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
+function showTab(name,btn){
+
+document.querySelectorAll('.tab').forEach(
+x=>x.classList.remove('active')
+);
+
+btn.classList.add('active');
+
+document.getElementById('videoPanel')
+.classList.add('hidden');
+
+document.getElementById('shortPanel')
+.classList.add('hidden');
+
+if(name==='video'){
+document.getElementById('videoPanel')
+.classList.remove('hidden');
+}else{
+document.getElementById('shortPanel')
+.classList.remove('hidden');
+}
+
+}
+
+</script>
+
+</body>
+</html>
