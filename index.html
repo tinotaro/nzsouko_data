@@ -43,6 +43,18 @@ body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f4f4f4;color:
 .bookshelf{background:linear-gradient(#8b5a2b,#6b4320);height:18px;border-radius:0 0 8px 8px}
 .hover{position:absolute;inset:0;background:rgba(0,0,0,.92);color:#fff;padding:16px;opacity:0;transition:.2s}
 .card:hover .hover{opacity:1}
+
+.card{text-decoration:none;color:#222;display:block}
+@media(max-width:700px){
+.header{flex-direction:column;gap:10px}
+.search{width:100%}
+.rank-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card img{height:240px}
+.thumbs{gap:6px}
+.thumb{width:140px;height:60px}
+.body b{font-size:14px}
+.tags{display:none}
+}
 @media(max-width:900px){.layout{display:block}.sidebar{width:100%;min-height:auto}.big{height:240px}}
 </style></head><body>
 <div id="auth"><div class="auth"><h1>No's Archive</h1><input id="pw" type="password"><button onclick="login()">ENTER</button><p id="msg"></p></div></div>
@@ -76,25 +88,25 @@ body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f4f4f4;color:
 <h2>人気ランキング</h2>
 <div class="rank-grid">
 
-<div class="card"><span class="badge">NEW</span><span class="rank">1</span><img src="images/comic01_p.png"><div class="body"><b>#door</b><div class="tags"><span class="tag">資料集</span><span class="tag">ホラー</span><span class="tag">SF</span></div></div><div class="hover">異常な記録媒体を巡る物語。追加資料あり。</div><div class="bookshelf"></div></div>
+<a class="card" href="comic01_p.html"><span class="badge">NEW</span><span class="rank">1</span><img src="images/comic01_p.png"><div class="body"><b>#door</b><div class="tags"><span class="tag">資料集</span><span class="tag">ホラー</span><span class="tag">SF</span></div></div><div class="hover">異常な記録媒体を巡る物語。追加資料あり。</div><div class="bookshelf"></div></a>
 
-<div class="card"><span class="badge">NEW</span><span class="rank">2</span><img src="images/comic02_p.png"><div class="body"><b>背いて、隠して、知らないで</b><div class="tags"><span class="tag">恋愛</span><span class="tag">社会人</span><span class="tag">切ない</span></div></div><div class="hover">一晩だけのお願いとひみつの恋の話。</div><div class="bookshelf"></div></div>
+<a class="card" href="comic02_p.html"><span class="badge">NEW</span><span class="rank">2</span><img src="images/comic02_p.png"><div class="body"><b>背いて、隠して、知らないで</b><div class="tags"><span class="tag">恋愛</span><span class="tag">社会人</span><span class="tag">切ない</span></div></div><div class="hover">一晩だけのお願いとひみつの恋の話。</div><div class="bookshelf"></div></a>
 
-<div class="card"><span class="rank">3</span><img src="images/comic03_p.png"><div class="body"><b>眠らぬシリウス</b><div class="tags"><span class="tag">天使</span><span class="tag">教祖</span><span class="tag">幻想</span></div></div><div class="hover">黒髪の少年を見に来た天使の男の話。</div><div class="bookshelf"></div></div>
+<a class="card" href="comic03_p.html"><span class="rank">3</span><img src="images/comic03_p.png"><div class="body"><b>眠らぬシリウス</b><div class="tags"><span class="tag">天使</span><span class="tag">教祖</span><span class="tag">幻想</span></div></div><div class="hover">黒髪の少年を見に来た天使の男の話。</div><div class="bookshelf"></div></a>
 
-<div class="card"><span class="rank">4</span><img src="images/comic04_p.png"><div class="body"><b>おやすみ、かみさま おはよう、あなた</b><div class="tags"><span class="tag">四神</span><span class="tag">中華風</span><span class="tag">転生</span></div></div><div class="hover">神様をやめた少年の生まれ変わりを待つ話。</div><div class="bookshelf"></div></div>
+<a class="card" href="comic04_p.html"><span class="rank">4</span><img src="images/comic04_p.png"><div class="body"><b>おやすみ、かみさま おはよう、あなた</b><div class="tags"><span class="tag">四神</span><span class="tag">中華風</span><span class="tag">転生</span></div></div><div class="hover">神様をやめた少年の生まれ変わりを待つ話。</div><div class="bookshelf"></div></a>
 
-<div class="card"><span class="badge">NEW</span><span class="rank">5</span><img src="images/comic05_p.png"><div class="body"><b>ONLY YOU!</b><div class="tags"><span class="tag">ギャグ</span><span class="tag">初恋</span><span class="tag">本屋</span></div></div><div class="hover">恋愛が下手なふたりの初恋こじらせコメディ。</div><div class="bookshelf"></div></div>
+<a class="card" href="comic05_p.html"><span class="badge">NEW</span><span class="rank">5</span><img src="images/comic05_p.png"><div class="body"><b>ONLY YOU!</b><div class="tags"><span class="tag">ギャグ</span><span class="tag">初恋</span><span class="tag">本屋</span></div></div><div class="hover">恋愛が下手なふたりの初恋こじらせコメディ。</div><div class="bookshelf"></div></a>
 
 </div>
 </section>
 
 <section id="comic" class="section"><h2>本棚</h2><div class="rank-grid">
-<div class="card"><img src="images/comic01_p.png"><div class="body">#door</div><div class="bookshelf"></div></div>
-<div class="card"><img src="images/comic02_p.png"><div class="body">背いて、隠して、知らないで</div><div class="bookshelf"></div></div>
-<div class="card"><img src="images/comic03_p.png"><div class="body">眠らぬシリウス</div><div class="bookshelf"></div></div>
-<div class="card"><img src="images/comic04_p.png"><div class="body">おやすみ、かみさま おはよう、あなた</div><div class="bookshelf"></div></div>
-<div class="card"><img src="images/comic05_p.png"><div class="body">ONLY YOU!</div><div class="bookshelf"></div></div>
+<a class="card" href="comic01_p.html"><img src="images/comic01_p.png"><div class="body">#door</div><div class="bookshelf"></div></a>
+<a class="card" href="comic02_p.html"><img src="images/comic02_p.png"><div class="body">背いて、隠して、知らないで</div><div class="bookshelf"></div></a>
+<a class="card" href="comic03_p.html"><img src="images/comic03_p.png"><div class="body">眠らぬシリウス</div><div class="bookshelf"></div></a>
+<a class="card" href="comic04_p.html"><img src="images/comic04_p.png"><div class="body">おやすみ、かみさま おはよう、あなた</div><div class="bookshelf"></div></a>
+<a class="card" href="comic05_p.html"><img src="images/comic05_p.png"><div class="body">ONLY YOU!</div><div class="bookshelf"></div></a>
 </div></section>
 
 </main></div></div>
