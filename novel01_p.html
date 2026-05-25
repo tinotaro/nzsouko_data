@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Novel Template | No's Archive</title>
+<style>
+:root{--accent:#A590AF;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f5f5f5;color:#222}
+.header{background:#111;color:#fff;padding:14px 24px}
+.header a{color:#fff;text-decoration:none}
+.container{max-width:1200px;margin:auto;padding:24px}
+
+.hero{
+display:grid;
+grid-template-columns:320px 1fr;
+gap:32px;
+background:#fff;
+padding:24px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+.cover img{
+width:100%;
+border-radius:12px;
+object-fit:cover;
+}
+
+.title{font-size:38px;font-weight:700}
+.subtitle{margin-top:10px;color:#666;line-height:1.8}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tag{
+background:#eee;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.buttons{
+display:flex;
+gap:12px;
+margin-top:20px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 24px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.preview{
+background:#fff;
+color:#222;
+border:1px solid #ccc;
+}
+
+.full{
+background:var(--accent);
+color:#fff;
+}
+
+.section{
+margin-top:24px;
+background:#fff;
+padding:24px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+.section h2{
+border-left:5px solid var(--accent);
+padding-left:10px;
+margin-bottom:16px;
+}
+
+.novel{
+line-height:2.2;
+max-width:800px;
+}
+
+.related{
+display:flex;
+gap:14px;
+overflow:auto;
+}
+
+.card{
+width:220px;
+background:#fff;
+border:1px solid #eee;
+border-radius:12px;
+overflow:hidden;
+text-decoration:none;
+color:#222;
+}
+
+.card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.card div{
+padding:10px;
+}
+
+@media(max-width:900px){
+.hero{
+grid-template-columns:1fr;
+}
+.buttons{
+flex-direction:column;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html">← No's Archive</a>
+</div>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="cover">
+<img src="images/novel01_p.png" alt="表紙">
+</div>
+
+<div>
+
+<div class="title">
+回逅、延縁
+</div>
+
+<div class="subtitle">
+天使と教祖の物語。<br>
+長い時間をかけて巡り合うふたりの話。
+</div>
+
+<div class="tags">
+<span class="tag">小説</span>
+<span class="tag">幻想</span>
+<span class="tag">天使</span>
+<span class="tag">教祖</span>
+</div>
+
+<div class="section" style="margin-top:18px">
+<h2>あらすじ</h2>
+
+<p class="novel">
+ここに作品のあらすじを入れます。<br>
+作品紹介・世界観説明・注意事項などを掲載できます。
+</p>
+</div>
+
+<div class="buttons">
+<a class="btn preview" href="#sample">
+試し読み
+</a>
+
+<a class="btn full" href="novel01.html">
+全文へ
+</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="sample">
+
+<h2>試し読み</h2>
+
+<div class="novel">
+
+<p>
+春の終わりだった。<br>
+窓から差し込む光は柔らかく、まるで時間だけが置き去りにされたようだった。
+</p>
+
+<p>
+彼は静かに目を閉じる。<br>
+遠い昔に見た空の色を思い出しながら。
+</p>
+
+<p>
+――続きは全文で。
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>関連作品</h2>
+
+<div class="related">
+
+<a class="card" href="#">
+<img src="images/comic03_p.png">
+<div>眠らぬシリウス</div>
+</a>
+
+<a class="card" href="#">
+<img src="images/comic04_p.png">
+<div>おやすみ、かみさま おはよう、あなた</div>
+</a>
+
+<a class="card" href="#">
+<img src="images/comic01_p.png">
+<div>#door</div>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

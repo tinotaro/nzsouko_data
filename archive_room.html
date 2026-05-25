@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Archive Room</title>
+<style>
+:root{--accent:#A590AF;}
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:"Noto Sans JP","Yu Gothic",sans-serif;
+background:#6b5139;
+background-image:
+radial-gradient(circle at 20% 20%, rgba(255,255,255,.04), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,255,255,.03), transparent 40%);
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* Header */
+
+.header{
+background:rgba(20,20,20,.92);
+backdrop-filter:blur(10px);
+color:white;
+padding:16px 24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.header a{
+color:white;
+text-decoration:none;
+}
+
+/* Desk props */
+
+.coffee{
+position:fixed;
+right:40px;
+top:130px;
+width:140px;
+height:140px;
+border:14px solid rgba(255,255,255,.18);
+border-radius:50%;
+pointer-events:none;
+}
+
+.coffee:after{
+content:"";
+position:absolute;
+right:-30px;
+top:35px;
+width:40px;
+height:40px;
+border:10px solid rgba(255,255,255,.18);
+border-radius:50%;
+}
+
+.pen{
+position:fixed;
+right:80px;
+bottom:80px;
+width:220px;
+height:12px;
+background:#222;
+transform:rotate(-30deg);
+border-radius:20px;
+pointer-events:none;
+}
+
+.pen:after{
+content:"";
+position:absolute;
+right:-25px;
+top:-4px;
+border-left:30px solid #d9b06f;
+border-top:10px solid transparent;
+border-bottom:10px solid transparent;
+}
+
+/* Filters */
+
+.filters{
+display:flex;
+gap:10px;
+padding:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.filter{
+border:none;
+padding:10px 18px;
+border-radius:999px;
+cursor:pointer;
+background:white;
+}
+
+.filter.active{
+background:var(--accent);
+color:white;
+}
+
+/* Folder */
+
+.folder-area{
+display:flex;
+justify-content:center;
+padding:20px;
+}
+
+.folder{
+background:#d9c08a;
+width:320px;
+padding:18px;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+text-align:center;
+font-weight:bold;
+font-size:20px;
+transition:.25s;
+}
+
+.folder:hover{
+transform:translateY(-3px);
+}
+
+.wall{
+max-width:1600px;
+margin:auto;
+padding:20px 40px 100px;
+display:none;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+animation:scatter .7s ease;
+}
+
+.wall.open{
+display:flex;
+}
+
+@keyframes scatter{
+from{
+opacity:0;
+transform:translateY(60px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+/* Notes */
+
+.note{
+position:absolute;
+background:#fff3a8;
+padding:12px;
+width:120px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+font-size:12px;
+}
+
+.n1{left:10%;top:260px;transform:rotate(-8deg)}
+.n2{right:15%;top:360px;transform:rotate(5deg)}
+.n3{left:20%;bottom:120px;transform:rotate(10deg)}
+
+/* Polaroid */
+
+.photo{
+width:240px;
+background:white;
+padding:12px 12px 55px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+cursor:pointer;
+position:relative;
+transition:.25s;
+}
+
+.photo:hover{
+transform:scale(1.08) rotate(0deg)!important;
+z-index:20;
+}
+
+.photo img{
+width:100%;
+aspect-ratio:3/4;
+object-fit:cover;
+display:block;
+}
+
+.caption{
+position:absolute;
+left:14px;
+right:14px;
+bottom:16px;
+font-size:12px;
+color:#666;
+}
+
+.r1{transform:rotate(-6deg)}
+.r2{transform:rotate(4deg)}
+.r3{transform:rotate(-2deg)}
+.r4{transform:rotate(8deg)}
+.r5{transform:rotate(-9deg)}
+
+/* Viewer */
+
+.viewer{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.92);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.viewer img{
+max-width:90vw;
+max-height:90vh;
+}
+
+.close{
+position:absolute;
+right:30px;
+top:20px;
+font-size:42px;
+color:white;
+cursor:pointer;
+}
+
+@media(max-width:700px){
+
+.coffee,.pen{
+display:none;
+}
+
+.photo{
+width:170px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div>Archive Room</div>
+<a href="index.html">← Back</a>
+</div>
+
+<div class="coffee"></div>
+<div class="pen"></div>
+
+<div class="note n1">
+2026<br>
+ONLY YOU!
+</div>
+
+<div class="note n2">
+未分類資料
+</div>
+
+<div class="note n3">
+イベント展示
+</div>
+
+<div class="filters">
+<button class="filter active" data-year="all">ALL</button>
+<button class="filter" data-year="2026">2026</button>
+<button class="filter" data-year="event">EVENT</button>
+<button class="filter" data-year="misc">未分類</button>
+</div>
+
+<div class="folder-area">
+<div class="folder" id="folder">
+📂 ONLY YOU! Archive
+</div>
+</div>
+
+<div class="wall" id="wall">
+
+<div class="photo r1" data-year="2026"><img src="images/onlyyou01.webp"><div class="caption">IMG-001</div></div>
+<div class="photo r2" data-year="2026"><img src="images/onlyyou02.webp"><div class="caption">IMG-002</div></div>
+<div class="photo r3" data-year="2026"><img src="images/onlyyou03.webp"><div class="caption">IMG-003</div></div>
+<div class="photo r4" data-year="event"><img src="images/onlyyou04.webp"><div class="caption">EVENT</div></div>
+<div class="photo r5" data-year="misc"><img src="images/onlyyou05.webp"><div class="caption">UNCLASSIFIED</div></div>
+<div class="photo r2" data-year="2026"><img src="images/onlyyou06.webp"><div class="caption">IMG-006</div></div>
+<div class="photo r1" data-year="2026"><img src="images/onlyyou07.webp"><div class="caption">IMG-007</div></div>
+<div class="photo r4" data-year="misc"><img src="images/onlyyou08.webp"><div class="caption">UNCLASSIFIED</div></div>
+
+</div>
+
+<div class="viewer" id="viewer">
+<div class="close">&times;</div>
+<img id="viewerImg">
+</div>
+
+<script>
+
+const folder=document.getElementById('folder');
+const wall=document.getElementById('wall');
+
+folder.onclick=()=>{
+wall.classList.toggle('open');
+};
+
+const filters=document.querySelectorAll('.filter');
+const photos=document.querySelectorAll('.photo');
+
+filters.forEach(btn=>{
+
+btn.onclick=()=>{
+
+filters.forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+
+const y=btn.dataset.year;
+
+photos.forEach(p=>{
+
+if(y==='all'||p.dataset.year===y){
+p.style.display='block';
+}else{
+p.style.display='none';
+}
+
+});
+
+};
+
+});
+
+const viewer=document.getElementById('viewer');
+const viewerImg=document.getElementById('viewerImg');
+
+photos.forEach(p=>{
+
+p.onclick=()=>{
+
+viewerImg.src=p.querySelector('img').src;
+viewer.style.display='flex';
+
+};
+
+});
+
+viewer.onclick=()=>{
+viewer.style.display='none';
+};
+
+</script>
+
+</body>
+</html>
