@@ -147,24 +147,15 @@ body{
   left:0;
   right:0;
 
-  bottom:-12px;
+  bottom:-14px;
 
-  height:12px;
+  height:14px;
 
   background:
-  linear-gradient(
-    -45deg,
-    transparent 8px,
-    #FFFDF8 0
-  ) bottom left,
+  linear-gradient(-45deg,transparent 10px,#FFFDF8 0) bottom left,
+  linear-gradient(45deg,transparent 10px,#FFFDF8 0) bottom right;
 
-  linear-gradient(
-    45deg,
-    transparent 8px,
-    #FFFDF8 0
-  ) bottom right;
-
-  background-size:16px 16px;
+  background-size:20px 20px;
 
   background-repeat:repeat-x;
 }
