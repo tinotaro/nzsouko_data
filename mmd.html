@@ -8,180 +8,123 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-<style>
-:root{
---accent:#A590AF;
---dark:#111;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:'M PLUS Rounded 1c',sans-serif;
-background:#f4f4f4;
-color:#222;
-}
-
-.header{
-background:#111;
-padding:14px 24px;
-color:white;
-}
-
-.header a{
-color:white;
-text-decoration:none;
-}
-
-.container{
-max-width:1400px;
-margin:auto;
-padding:24px;
-}
-
-/* fake youtube player */
-
-.player{
-background:#000;
-border-radius:16px;
-overflow:hidden;
-position:relative;
-aspect-ratio:16/9;
-cursor:pointer;
-}
-
-.player img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.play{
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-font-size:90px;
-color:white;
-text-shadow:0 0 20px rgba(0,0,0,.4);
-pointer-events:none;
-}
-
-.info{
-background:white;
-margin-top:18px;
-padding:20px;
-border-radius:16px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-
-.title{
-font-family:'Dela Gothic One',sans-serif;
-font-size:32px;
-margin-bottom:12px;
-}
-
-.meta{
-line-height:2;
-}
-
-.watch{
-display:inline-block;
-margin-top:14px;
-padding:12px 20px;
-background:var(--accent);
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
-}
-
-/* tabs */
-
-.tabs{
-display:flex;
-gap:10px;
-margin-top:24px;
-}
-
-.tab{
-border:none;
-padding:12px 18px;
-background:white;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.tab.active{
-background:var(--accent);
-color:white;
-}
-
-/* gallery */
-
-.panel{
-margin-top:20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:12px;
-}
-
-.thumb{
-background:white;
-border-radius:12px;
-overflow:hidden;
-cursor:pointer;
-transition:.2s;
-}
-
-.thumb:hover{
-transform:translateY(-3px);
-}
-
-.thumb img{
-width:100%;
-height:160px;
-object-fit:cover;
-display:block;
-}
-
-.thumb div{
-padding:8px;
-font-size:13px;
-}
-
-.hidden{
-display:none;
-}
-
-@media(max-width:700px){
-
-.title{
-font-size:24px;
-}
-
-.grid{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.thumb img{
-height:120px;
-}
-
-}
-</style>
 </head>
 <body>
 
-<div class="header">
-<a href="index.html">← No's Archive</a>
+<header class="header">
+
+<div class="logo">
+
+<span class="logo-main">
+No's
+</span>
+
+<span class="logo-sub">
+Archive
+</span>
+
+<div class="logo-caption">
+漫画・小説・イラスト保管庫
 </div>
+
+</div>
+
+<input
+class="search"
+placeholder="作品検索">
+
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="receipt">
+
+<div class="rtitle">
+RECEIPT #0001
+</div>
+
+<div class="small">
+WELCOME
+</div>
+
+<div class="line"></div>
+
+<nav class="menu">
+
+<a href="index.html#new">
+01 NEW
+</a>
+
+<a href="index.html#comic">
+02 COMIC
+</a>
+
+<a href="index.html#novel">
+03 NOVEL
+</a>
+
+<a href="illust/archive_room.html">
+04 PICT.
+</a>
+
+<a href="#">
+05 MMD
+</a>
+
+<a href="index.html#update">
+06 UPDATE
+</a>
+
+</nav>
+
+<div class="line"></div>
+
+<div class="sidebar-message">
+
+パン焼けました🍞<br>
+ONLY YOU! 公開中
+
+</div>
+
+<img
+src="images/common/sidebar_chara.png"
+class="chara">
+
+<div class="line"></div>
+
+<div class="social">
+
+<a
+href="https://x.com/Lt0pp"
+target="_blank">
+
+<img
+src="images/common/x-icon.png"
+alt="X">
+
+</a>
+
+<a
+href="https://wavebox.me/wave/62pbvrjbohkxxidx/"
+target="_blank">
+
+<img
+src="images/common/wavebox-icon.png"
+alt="Wavebox">
+
+</a>
+
+</div>
+
+</div>
+
+</aside>
+
+<main class="main">
 
 <div class="container">
 
@@ -192,7 +135,7 @@ height:120px;
 
 <div class="info">
 
-<div class="title" id="title">
+<div class="player-title" id="title">
 MMD作品タイトル
 </div>
 
@@ -296,6 +239,10 @@ onclick="selectItem(
 </div>
 
 </div>
+  
+</div>
+
+</main>
 
 </div>
 
