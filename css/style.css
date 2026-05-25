@@ -25,22 +25,31 @@ body{
 
 .header{
   position:fixed;
-  top:0;left:0;right:0;
-  height:84px;
+  top:0;
+  left:0;
+  right:0;
+
+  height:92px;
+
   background:#fff;
+
   border-bottom:1px solid #dce5ef;
+
   box-shadow:0 8px 18px rgba(0,0,0,.08);
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 32px;
+
+  padding:0 28px;
+
   z-index:1000;
 }
 
 .logo{
   display:flex;
   flex-direction:column;
-  line-height:1.05;
+  line-height:.92;
 }
 
 .logo-main{
@@ -56,9 +65,12 @@ body{
 }
 
 .logo-caption{
-  margin-top:6px;
+  margin-top:8px;
+  padding-bottom:10px;
+
   font-size:10px;
-  letter-spacing:2px;
+  letter-spacing:1px;
+
   color:#7D8896;
   font-weight:700;
 }
@@ -75,7 +87,7 @@ body{
 
 .layout{
   display:flex;
-  margin-top:84px;
+  margin-top:92px;
 }
 
 .main{
@@ -86,7 +98,7 @@ body{
 /* Sidebar */
 
 .sidebar{
-  width:210px;
+  width:170px;
   background:var(--sidebar);
   padding:0 14px 20px;
 }
@@ -94,27 +106,36 @@ body{
 /* Message */
 
 .sidebar-message{
-  background:#cfdff2;
-  padding:14px;
-  border-radius:14px;
-  margin:12px 0;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  background:#f4f4f4;
+
+  padding:10px;
+
+  border-radius:10px;
+
+  margin-bottom:12px;
+
   font-size:13px;
+
   line-height:1.6;
+
+  box-shadow:none;
 }
 
 /* Receipt */
 
 .receipt{
   position:sticky;
-  top:84px;
+  top:92px;
+
   background:var(--paper);
+
   padding:22px;
-  margin-top:-6px;
-  font-family:"Courier New",monospace;
+
+  margin-top:0;
+
   box-shadow:
-  0 10px 20px rgba(0,0,0,.12),
-  0 24px 40px rgba(0,0,0,.08);
+  0 8px 16px rgba(0,0,0,.10),
+  0 18px 32px rgba(0,0,0,.05);
 }
 
 .receipt::after{
@@ -152,11 +173,15 @@ body{
 .menu a{
   display:block;
   padding:8px 0;
+
   color:#222;
+
   text-decoration:none;
+
+  font-size:14px;
+
   font-weight:700;
 }
-
 .menu a:hover{
   color:var(--purple);
 }
@@ -164,16 +189,15 @@ body{
 /* Character */
 
 .chara{
-  width:120px;
+  width:90px;
   display:block;
-  margin:12px auto;
+  margin:10px auto;
 }
 
 .social{
   display:flex;
   justify-content:center;
-  align-items:center;
-  gap:18px;
+  gap:16px;
 }
 
 .social a{
@@ -185,8 +209,8 @@ body{
 }
 
 .social img{
-  width:58px;
-  height:58px;
+  width:42px;
+  height:42px;
   object-fit:contain;
 }
 
