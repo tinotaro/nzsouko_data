@@ -4,360 +4,233 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Archive Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Dela+Gothic+One&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#A590AF;}
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:"Noto Sans JP","Yu Gothic",sans-serif;
-background:#6b5139;
-background-image:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,.04), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(255,255,255,.03), transparent 40%);
-min-height:100vh;
-overflow-x:hidden;
+:root{
+--purple:#A590AF;
+--green:#7BBF8A;
 }
-
-/* Header */
-
-.header{
-background:rgba(20,20,20,.92);
-backdrop-filter:blur(10px);
-color:white;
-padding:16px 24px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:'M PLUS Rounded 1c',sans-serif;
+background:#ece7df;
+color:#222;
+}
+header{
+background:#111;
+color:#fff;
+padding:18px 24px;
+}
+h1{
+font-family:'Dela Gothic One',sans-serif;
+font-size:28px;
+}
+.filters{
 position:sticky;
 top:0;
-z-index:100;
-}
-
-.header a{
-color:white;
-text-decoration:none;
-}
-
-/* Desk props */
-
-.coffee{
-position:fixed;
-right:40px;
-top:130px;
-width:140px;
-height:140px;
-border:14px solid rgba(255,255,255,.18);
-border-radius:50%;
-pointer-events:none;
-}
-
-.coffee:after{
-content:"";
-position:absolute;
-right:-30px;
-top:35px;
-width:40px;
-height:40px;
-border:10px solid rgba(255,255,255,.18);
-border-radius:50%;
-}
-
-.pen{
-position:fixed;
-right:80px;
-bottom:80px;
-width:220px;
-height:12px;
-background:#222;
-transform:rotate(-30deg);
-border-radius:20px;
-pointer-events:none;
-}
-
-.pen:after{
-content:"";
-position:absolute;
-right:-25px;
-top:-4px;
-border-left:30px solid #d9b06f;
-border-top:10px solid transparent;
-border-bottom:10px solid transparent;
-}
-
-/* Filters */
-
-.filters{
+z-index:20;
+padding:16px;
 display:flex;
 gap:10px;
-padding:20px;
-justify-content:center;
 flex-wrap:wrap;
+justify-content:center;
+background:rgba(236,231,223,.95);
+backdrop-filter:blur(8px);
 }
-
 .filter{
 border:none;
 padding:10px 18px;
 border-radius:999px;
+background:#fff;
 cursor:pointer;
-background:white;
+font-weight:700;
 }
-
 .filter.active{
-background:var(--accent);
-color:white;
+background:var(--purple);
+color:#fff;
 }
-
-/* Folder */
-
-.folder-area{
-display:flex;
-justify-content:center;
+.section{
+max-width:1800px;
+margin:auto;
 padding:20px;
 }
-
-.folder{
-background:#d9c08a;
-width:320px;
-padding:18px;
-border-radius:10px;
+details{
+margin-bottom:30px;
+}
+summary{
 cursor:pointer;
-box-shadow:0 10px 25px rgba(0,0,0,.25);
-text-align:center;
-font-weight:bold;
-font-size:20px;
-transition:.25s;
+font-size:22px;
+font-weight:700;
+padding:8px 0;
 }
-
-.folder:hover{
-transform:translateY(-3px);
+.gallery{
+column-count:5;
+column-gap:18px;
 }
-
-.wall{
-max-width:1600px;
-margin:auto;
-padding:20px 40px 100px;
-display:none;
-flex-wrap:wrap;
-justify-content:center;
-gap:40px;
-animation:scatter .7s ease;
-}
-
-.wall.open{
-display:flex;
-}
-
-@keyframes scatter{
-from{
-opacity:0;
-transform:translateY(60px);
-}
-to{
-opacity:1;
-transform:none;
-}
-}
-
-/* Notes */
-
-.note{
-position:absolute;
-background:#fff3a8;
-padding:12px;
-width:120px;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
-font-size:12px;
-}
-
-.n1{left:10%;top:260px;transform:rotate(-8deg)}
-.n2{right:15%;top:360px;transform:rotate(5deg)}
-.n3{left:20%;bottom:120px;transform:rotate(10deg)}
-
-/* Polaroid */
-
-.photo{
-width:240px;
-background:white;
-padding:12px 12px 55px;
-box-shadow:0 10px 25px rgba(0,0,0,.3);
-cursor:pointer;
+.card{
 position:relative;
-transition:.25s;
-}
-
-.photo:hover{
-transform:scale(1.08) rotate(0deg)!important;
-z-index:20;
-}
-
-.photo img{
+display:inline-block;
 width:100%;
-aspect-ratio:3/4;
-object-fit:cover;
+margin:0 0 18px;
+background:#fff;
+padding:12px 12px 18px;
+border-radius:8px;
+box-shadow:0 4px 14px rgba(0,0,0,.12);
+break-inside:avoid;
+cursor:pointer;
+transition:.2s;
+}
+.card:hover{
+transform:translateY(-4px);
+}
+.card img{
+width:100%;
 display:block;
+border-radius:4px;
 }
-
-.caption{
+.pin{
 position:absolute;
-left:14px;
-right:14px;
-bottom:16px;
-font-size:12px;
-color:#666;
+left:50%;
+top:-12px;
+transform:translateX(-50%);
+width:34px;
+height:34px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-size:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.2);
 }
+.pin.purple{background:var(--purple);}
+.pin.green{background:var(--green);}
 
-.r1{transform:rotate(-6deg)}
-.r2{transform:rotate(4deg)}
-.r3{transform:rotate(-2deg)}
-.r4{transform:rotate(8deg)}
-.r5{transform:rotate(-9deg)}
-
-/* Viewer */
-
-.viewer{
+.title{
+margin-top:10px;
+font-weight:700;
+}
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-top:8px;
+}
+.tags span{
+font-size:11px;
+padding:4px 8px;
+border-radius:999px;
+background:#f3eef5;
+color:#6f5978;
+}
+.lightbox{
 display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.92);
+background:rgba(0,0,0,.9);
 justify-content:center;
 align-items:center;
 z-index:999;
 }
-
-.viewer img{
-max-width:90vw;
-max-height:90vh;
+.lightbox img{
+max-width:92vw;
+max-height:92vh;
 }
-
-.close{
-position:absolute;
-right:30px;
-top:20px;
-font-size:42px;
-color:white;
-cursor:pointer;
-}
-
-@media(max-width:700px){
-
-.coffee,.pen{
-display:none;
-}
-
-.photo{
-width:170px;
-}
-
-}
+@media(max-width:1200px){.gallery{column-count:4;}}
+@media(max-width:900px){.gallery{column-count:3;}}
+@media(max-width:700px){.gallery{column-count:2;}}
 </style>
 </head>
 <body>
 
-<div class="header">
-<div>Archive Room</div>
-<a href="index.html">← Back</a>
-</div>
-
-<div class="coffee"></div>
-<div class="pen"></div>
-
-<div class="note n1">
-2026<br>
-ONLY YOU!
-</div>
-
-<div class="note n2">
-未分類資料
-</div>
-
-<div class="note n3">
-イベント展示
-</div>
+<header><h1>Archive Room</h1></header>
 
 <div class="filters">
-<button class="filter active" data-year="all">ALL</button>
-<button class="filter" data-year="2026">2026</button>
-<button class="filter" data-year="event">EVENT</button>
-<button class="filter" data-year="misc">未分類</button>
+<button class="filter active">ALL</button>
+<button class="filter">2026</button>
+<button class="filter">EVENT</button>
+<button class="filter">設定資料</button>
+<button class="filter">らくがき</button>
 </div>
 
-<div class="folder-area">
-<div class="folder" id="folder">
-📂 ONLY YOU! Archive
+<div class="section">
+
+<details open>
+<summary>📂 2026</summary>
+
+<div class="gallery">
+
+<div class="card">
+<div class="pin purple">📌</div>
+<img src="images/illust01_01.webp">
+<div class="title">ONLY YOU!</div>
+<div class="tags">
+<span>#恋愛</span><span>#ギャグ</span><span>#2026</span>
 </div>
 </div>
 
-<div class="wall" id="wall">
+<div class="card">
+<div class="pin green">📌</div>
+<img src="images/illust01_02.webp">
+<div class="title">設定資料</div>
+<div class="tags">
+<span>#資料</span><span>#キャラ</span>
+</div>
+</div>
 
-<div class="photo r1" data-year="2026"><img src="images/onlyyou01.webp"><div class="caption">IMG-001</div></div>
-<div class="photo r2" data-year="2026"><img src="images/onlyyou02.webp"><div class="caption">IMG-002</div></div>
-<div class="photo r3" data-year="2026"><img src="images/onlyyou03.webp"><div class="caption">IMG-003</div></div>
-<div class="photo r4" data-year="event"><img src="images/onlyyou04.webp"><div class="caption">EVENT</div></div>
-<div class="photo r5" data-year="misc"><img src="images/onlyyou05.webp"><div class="caption">UNCLASSIFIED</div></div>
-<div class="photo r2" data-year="2026"><img src="images/onlyyou06.webp"><div class="caption">IMG-006</div></div>
-<div class="photo r1" data-year="2026"><img src="images/onlyyou07.webp"><div class="caption">IMG-007</div></div>
-<div class="photo r4" data-year="misc"><img src="images/onlyyou08.webp"><div class="caption">UNCLASSIFIED</div></div>
+<div class="card">
+<div class="pin purple">📌</div>
+<img src="images/illust01_03.webp">
+<div class="title">イベント展示</div>
+<div class="tags">
+<span>#イベント</span><span>#展示</span>
+</div>
+</div>
+
+<div class="card">
+<div class="pin green">📌</div>
+<img src="images/illust01_04.webp">
+<div class="title">らくがき</div>
+<div class="tags">
+<span>#らくがき</span>
+</div>
+</div>
+
+</div>
+</details>
+
+<details>
+<summary>📂 2025</summary>
+<div class="gallery">
+<div class="card">
+<div class="pin purple">📌</div>
+<img src="images/illust01_05.webp">
+<div class="title">Archive</div>
+<div class="tags">
+<span>#2025</span>
+</div>
+</div>
+</div>
+</details>
 
 </div>
 
-<div class="viewer" id="viewer">
-<div class="close">&times;</div>
-<img id="viewerImg">
+<div class="lightbox" id="lightbox">
+<img id="viewer">
 </div>
 
 <script>
-
-const folder=document.getElementById('folder');
-const wall=document.getElementById('wall');
-
-folder.onclick=()=>{
-wall.classList.toggle('open');
-};
-
-const filters=document.querySelectorAll('.filter');
-const photos=document.querySelectorAll('.photo');
-
-filters.forEach(btn=>{
-
-btn.onclick=()=>{
-
-filters.forEach(x=>x.classList.remove('active'));
-btn.classList.add('active');
-
-const y=btn.dataset.year;
-
-photos.forEach(p=>{
-
-if(y==='all'||p.dataset.year===y){
-p.style.display='block';
-}else{
-p.style.display='none';
-}
-
+document.querySelectorAll('.card').forEach(card=>{
+ card.onclick=()=>{
+  document.getElementById('viewer').src=card.querySelector('img').src;
+  document.getElementById('lightbox').style.display='flex';
+ }
 });
-
+document.getElementById('lightbox').onclick=()=>{
+ document.getElementById('lightbox').style.display='none';
 };
-
-});
-
-const viewer=document.getElementById('viewer');
-const viewerImg=document.getElementById('viewerImg');
-
-photos.forEach(p=>{
-
-p.onclick=()=>{
-
-viewerImg.src=p.querySelector('img').src;
-viewer.style.display='flex';
-
-};
-
-});
-
-viewer.onclick=()=>{
-viewer.style.display='none';
-};
-
 </script>
 
 </body>
