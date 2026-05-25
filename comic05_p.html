@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONLY YOU! | No's Archive</title>
+<style>
+:root{--accent:#A590AF;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f5f5f5;color:#222}
+
+.header{
+background:#111;color:#fff;
+padding:14px 24px;
+display:flex;justify-content:space-between;align-items:center;
+}
+.header a{color:#fff;text-decoration:none}
+
+.container{max-width:1400px;margin:auto;padding:24px}
+
+.hero{
+display:grid;
+grid-template-columns:320px 1fr;
+gap:30px;
+background:#fff;
+padding:24px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.cover img{
+width:100%;
+border-radius:10px;
+object-fit:cover;
+}
+
+.badge{
+display:inline-block;
+background:#d91f26;
+color:#fff;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+margin-bottom:10px;
+}
+
+.title{font-size:36px;font-weight:700}
+.catch{font-size:18px;color:#666;margin-top:8px}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tag{
+background:#eee;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.meta{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin:20px 0;
+}
+.meta div{
+background:#fafafa;
+border:1px solid #eee;
+padding:12px;
+border-radius:10px;
+text-align:center;
+}
+
+.buttons{
+display:flex;
+gap:12px;
+margin-top:20px;
+}
+.btn{
+padding:14px 28px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+}
+.read{background:#b11414;color:white}
+.sample{background:#fff;border:1px solid #ccc;color:#222}
+
+.section{
+margin-top:24px;
+background:#fff;
+padding:24px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+.section h2{
+border-left:5px solid var(--accent);
+padding-left:10px;
+margin-bottom:14px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:14px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+}
+
+.novel{
+line-height:2;
+max-width:900px;
+}
+
+.related{
+display:flex;
+gap:14px;
+overflow:auto;
+}
+
+.card{
+background:#fff;
+width:220px;
+border-radius:12px;
+overflow:hidden;
+text-decoration:none;
+color:#222;
+border:1px solid #eee;
+}
+
+.card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.card div{
+padding:10px;
+}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr}
+.meta{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div><a href="index.html">← No's Archive</a></div>
+<div>ONLY YOU!</div>
+</div>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="cover">
+<img src="images/comic05_p.png">
+</div>
+
+<div>
+<div class="badge">NEW</div>
+
+<div class="title">ONLY YOU!</div>
+
+<div class="catch">
+恋愛が下手くそなふたりの、健全な初恋こじらせコメディ
+</div>
+
+<div class="tags">
+<span class="tag">ギャグ</span>
+<span class="tag">恋愛</span>
+<span class="tag">初恋</span>
+<span class="tag">社会人</span>
+<span class="tag">本屋</span>
+</div>
+
+<div class="meta">
+<div><b>形式</b><br>漫画</div>
+<div><b>ページ</b><br>32P</div>
+<div><b>更新</b><br>2026</div>
+<div><b>状態</b><br>公開中</div>
+</div>
+
+<p>
+茶髪ショートの社会人と、黒髪眼鏡の陰キャ本屋店員。
+恋愛経験もコミュ力も低めなふたりが、
+すれ違いながら距離を縮めていくギャグ多めのラブコメ。
+</p>
+
+<div class="buttons">
+<a class="btn read" href="comic.html">今すぐ読む</a>
+<a class="btn sample" href="#">サンプル</a>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>作品紹介</h2>
+
+<p class="novel">
+本ページは漫画・イラスト・小説すべてで共通利用できるテンプレートです。<br>
+漫画なら作品紹介、イラストならギャラリー、小説なら本文サンプルを配置できます。
+</p>
+</div>
+
+<div class="section">
+<h2>ギャラリー</h2>
+
+<div class="gallery">
+<img src="images/comic05_s.png">
+<img src="images/comic05_s.png">
+<img src="images/comic05_s.png">
+</div>
+</div>
+
+<div class="section">
+<h2>本文サンプル（小説用）</h2>
+
+<div class="novel">
+<p>
+ここに小説サンプル本文を掲載できます。<br>
+漫画作品の場合は非表示にしてもOK。<br>
+イラスト作品の場合は制作メモや設定資料置き場として利用できます。
+</p>
+</div>
+</div>
+
+<div class="section">
+<h2>関連作品</h2>
+
+<div class="related">
+
+<a class="card" href="#">
+<img src="images/comic01_p.png">
+<div>#door</div>
+</a>
+
+<a class="card" href="#">
+<img src="images/comic02_p.png">
+<div>背いて、隠して、知らないで</div>
+</a>
+
+<a class="card" href="#">
+<img src="images/comic03_p.png">
+<div>眠らぬシリウス</div>
+</a>
+
+<a class="card" href="#">
+<img src="images/comic04_p.png">
+<div>おやすみ、かみさま おはよう、あなた</div>
+</a>
+
+</div>
+</div>
+
+</div>
+</body>
+</html>
