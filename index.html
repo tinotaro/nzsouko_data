@@ -1,173 +1,81 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
+<html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>No's Archive</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Yu Gothic",sans-serif;background:#f5f5f5;color:#222}
-#auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#f5f5f5;z-index:9999}
-.auth-card{background:#fff;padding:40px;border-radius:18px;width:min(420px,90vw);box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center}
-.auth-card input{width:100%;padding:12px;margin-top:12px;border:1px solid #ddd;border-radius:10px}
-.auth-card button{margin-top:12px;padding:12px 20px;border:none;border-radius:10px;background:#111;color:#fff}
+body{margin:0;font-family:'Noto Sans JP',sans-serif;background:#fff;color:#222}
+#auth{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#f5f5f5}
+.card{background:#fff;padding:32px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.08);width:min(420px,90vw);text-align:center}
+input,button{padding:12px;border-radius:8px;border:1px solid #ddd}
+button{background:#111;color:#fff}
 #site{display:none}
-.layout{display:flex;min-height:100vh}
-.sidebar{width:240px;background:#fff;padding:24px;position:sticky;top:0;height:100vh;box-shadow:1px 0 10px rgba(0,0,0,.05)}
-.logo{font-size:28px;font-weight:700}
-.sub{font-size:12px;opacity:.6;margin:8px 0 24px}
-.menu a{display:block;padding:10px;text-decoration:none;color:#333;border-radius:8px}
-.menu a:hover{background:#f2f2f2}
-.main{flex:1;padding:30px}
-.hero{position:relative;height:380px;border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.08)}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s}
+.sidebar{position:fixed;left:0;top:0;width:220px;height:100%;background:#1f1f1f;color:#fff;padding:20px}
+.sidebar a{color:#fff;text-decoration:none;display:block;padding:8px 0}
+.main{margin-left:220px;padding:24px}
+.hero{height:360px;position:relative;border-radius:18px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:.8s}
 .slide.active{opacity:1}
 .slide img{width:100%;height:100%;object-fit:cover}
-.hero-info{position:absolute;left:40px;bottom:40px;background:rgba(0,0,0,.6);color:#fff;padding:20px;border-radius:12px}
-.hero-info a{display:inline-block;margin-top:10px;padding:10px 16px;background:#fff;color:#111;text-decoration:none;border-radius:10px}
-.section{margin-top:40px}
-.cards{display:flex;gap:20px;overflow-x:auto}
-.card{position:relative;flex:0 0 190px;background:#fff;border-radius:14px;overflow:hidden;text-decoration:none;color:#222;box-shadow:0 4px 12px rgba(0,0,0,.06)}
-.card img{width:100%;height:270px;object-fit:cover}
-.card-body{padding:12px}
-.hover-info{position:absolute;inset:0;background:rgba(0,0,0,.88);color:#fff;padding:16px;opacity:0;transition:.25s;display:flex;flex-direction:column;justify-content:center}
-.card:hover .hover-info{opacity:1}
-.news{background:#fff;padding:20px;border-radius:14px}
-@media(max-width:900px){.layout{display:block}.sidebar{width:100%;height:auto;position:relative}.hero{height:240px}}
-</style>
-</head>
-<body>
-
-<div id="auth">
-<div class="auth-card">
-<h1>No's Archive</h1>
-<p>閲覧パスワードを入力してください</p>
-<input id="pw" type="password" placeholder="Password">
-<button onclick="login()">ENTER</button>
-<p id="msg"></p>
-</div>
-</div>
-
+.overlay{position:absolute;left:32px;bottom:32px;background:rgba(0,0,0,.6);color:#fff;padding:16px;border-radius:12px}
+.row{display:flex;gap:16px;overflow:auto}
+.item{width:180px;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;position:relative;text-decoration:none;color:#222}
+.item img{width:100%;height:260px;object-fit:cover}
+.hover{position:absolute;inset:0;background:rgba(0,0,0,.88);color:#fff;padding:12px;opacity:0;transition:.2s}
+.item:hover .hover{opacity:1}
+h2{border-left:4px solid #ff8800;padding-left:10px}
+</style></head><body>
+<div id="auth"><div class="card"><h1>No's Archive</h1><p>閲覧パスワード</p><input id="pw"><button onclick="login()">ENTER</button><p id="msg"></p></div></div>
 <div id="site">
-<div class="layout">
-
-<aside class="sidebar">
-<div class="logo">No's Archive</div>
-<div class="sub">Comic / Novel / Illustration / MMD</div>
-<nav class="menu">
+<div class="sidebar">
+<h2 style="border:none;padding:0;color:white">No's Archive</h2>
+<a href="#illust">ILLUSTRATION</a>
 <a href="#comic">COMIC</a>
 <a href="#novel">NOVEL</a>
-<a href="#illust">ILLUSTRATION</a>
 <a href="#mmd">MMD</a>
 <a href="#history">更新履歴</a>
-</nav>
-</aside>
-
-<main class="main">
-
-<section class="hero">
+</div>
+<div class="main">
+<div class="hero">
 <div class="slide active"><img src="images/comic01_s.png"></div>
 <div class="slide"><img src="images/comic01_s.png"></div>
 <div class="slide"><img src="images/comic01_s.png"></div>
-
-<div class="hero-info">
-<h2>#door</h2>
-<p>漫画＋追加資料公開中</p>
-<a href="comic.html">読む</a>
-</div>
-</section>
-
-<section id="comic" class="section">
-<h2>COMIC</h2>
-<div class="cards">
-<a class="card" href="comic.html">
-<img src="images/comic01_s.png">
-<div class="card-body"><h3>#door</h3><p>漫画＋追加資料</p></div>
-<div class="hover-info">
-<h3>#door</h3>
-<p>異常な記録媒体を巡る物語。追加資料あり。</p>
-</div>
-</a>
-</div>
-</section>
-
-<section id="novel" class="section">
-<h2>NOVEL</h2>
-<div class="cards">
-<div class="card">
-<img src="images/comic01_s.png">
-<div class="card-body"><h3>準備中</h3></div>
-<div class="hover-info"><p>短編・掌編小説置き場</p></div>
-</div>
-</div>
-</section>
-
-<section id="illust" class="section">
-<h2>ILLUSTRATION</h2>
-<div class="cards">
-<div class="card">
-<img src="images/comic01_s.png">
-<div class="card-body"><h3>イラスト集</h3></div>
-<div class="hover-info"><p>カラー・ラフ・設定資料</p></div>
-</div>
-</div>
-</section>
-
-<section id="mmd" class="section">
-<h2>MMD</h2>
-<div class="cards">
-<div class="card">
-<img src="images/comic01_s.png">
-<div class="card-body"><h3>MMD作品</h3></div>
-<div class="hover-info"><p>動画作品アーカイブ</p></div>
-</div>
-</div>
-</section>
-
-<section id="history" class="section">
-<h2>更新履歴</h2>
-<div class="news">
-<p>2026.05.25 #door追加資料公開</p>
-<p>2026.05.20 イラスト更新</p>
-</div>
-</section>
-
-</main>
-</div>
+<div class="overlay"><h1>#door</h1><p>漫画＋追加資料公開中</p></div>
 </div>
 
+<h2 id="illust">ILLUSTRATION</h2>
+<p>Privatter移植予定作品多数</p>
+
+<h2 id="comic">COMIC</h2>
+<div class="row">
+<a class="item" href="#"><img src="images/comic01_s.png"><div class="hover">一晩だけのお願いとひみつの恋の話 R18/31P</div></a>
+<a class="item" href="#"><img src="images/comic01_s.png"><div class="hover">教祖という生を見に来た天使の話</div></a>
+<a class="item" href="#"><img src="images/comic01_s.png"><div class="hover">激重一目ぼれ一途漫画</div></a>
+</div>
+
+<h2 id="novel">NOVEL</h2>
+<ul>
+<li>回逅、延縁</li>
+<li>魂のゆりかご</li>
+<li>興味愛抱</li>
+<li>Daydream After</li>
+</ul>
+
+<h2 id="mmd">MMD</h2>
+<ul>
+<li>キュートなカノジョ</li>
+<li>チョコレートミルク</li>
+<li>ビーバー</li>
+</ul>
+
+<h2 id="history">更新履歴</h2>
+<ul>
+<li>Privatter移植準備</li>
+<li>#door追加資料公開</li>
+</ul>
+</div></div>
 <script>
-const auth=document.getElementById('auth');
-const site=document.getElementById('site');
-
-if(localStorage.getItem('archive_auth')==='ok'){
- auth.style.display='none';
- site.style.display='block';
-}
-
-function login(){
- const pw=document.getElementById('pw').value;
- const msg=document.getElementById('msg');
- msg.textContent='Checking access...';
- setTimeout(()=>{
-   if(pw==='Lt0pp0hz'){
-     localStorage.setItem('archive_auth','ok');
-     auth.style.display='none';
-     site.style.display='block';
-   }else{
-     msg.textContent='パスワードが違います';
-   }
- },1200);
-}
-
-const slides=document.querySelectorAll('.slide');
-let current=0;
-setInterval(()=>{
- slides[current].classList.remove('active');
- current=(current+1)%slides.length;
- slides[current].classList.add('active');
-},4000);
-</script>
-
-</body>
-</html>
+const a=document.getElementById('auth'),s=document.getElementById('site');
+if(localStorage.archive_auth==='ok'){a.style.display='none';s.style.display='block'}
+function login(){document.getElementById('msg').textContent='Checking access...';setTimeout(()=>{if(document.getElementById('pw').value==='Lt0pp0hz'){localStorage.archive_auth='ok';a.style.display='none';s.style.display='block'}else{document.getElementById('msg').textContent='パスワードが違います'}},1000)}
+let c=0;const slides=document.querySelectorAll('.slide');setInterval(()=>{slides[c].classList.remove('active');c=(c+1)%slides.length;slides[c].classList.add('active')},4000);
+</script></body></html>
