@@ -1,70 +1,110 @@
-<!DOCTYPE html><html lang='ja'><head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width,initial-scale=1'>
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>No's Archive</title>
 <style>
-:root{--accent:#A590AF;}
-*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans JP',sans-serif;background:#f4f4f4}
-#auth{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#f4f4f4;z-index:99}
-.auth{background:#fff;padding:40px;border-radius:16px}.auth input,.auth button{padding:12px}
+:root{--accent:#A590AF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP","Yu Gothic",sans-serif;background:#f4f4f4;color:#222}
+#auth{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#f4f4f4;z-index:999}
+.auth{background:#fff;padding:40px;border-radius:16px;width:min(420px,90vw)}
+.auth input{width:100%;padding:12px;margin:10px 0}
+.auth button{padding:12px 20px;background:#111;color:#fff;border:none}
+
 #site{display:none}
-.header{background:#111;color:#fff;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.search{width:320px;max-width:50vw;padding:10px;border-radius:20px;border:none}
+.header{background:#111;color:#fff;padding:14px 24px;display:flex;justify-content:space-between}
+.search{padding:10px 14px;border-radius:20px;border:none;width:320px}
 .layout{display:flex}
-.sidebar{width:220px;background:#1f1f1f;min-height:100vh;padding:20px;position:sticky;top:56px}
-.sidebar a{display:block;color:#fff;text-decoration:none;padding:12px;border-radius:8px;transition:.2s}
+.sidebar{width:220px;background:#1f1f1f;min-height:100vh;padding:20px}
+.sidebar a{display:block;color:#fff;text-decoration:none;padding:12px;border-radius:8px}
 .sidebar a:hover{background:var(--accent)}
 .main{flex:1;padding:20px}
-.hero{height:420px;background:#ddd;border-radius:16px;overflow:hidden}
-.hero img{width:100%;height:100%;object-fit:cover}
+
+.big{height:420px;position:relative;overflow:hidden;border-radius:16px}
+.slide{position:absolute;inset:0;opacity:0;transition:.8s}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:10px;margin-top:10px;overflow:auto}
+.thumb{width:240px;height:90px;overflow:hidden;border-radius:10px;border:3px solid transparent}
+.thumb.active{border-color:var(--accent)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
 .section{margin-top:30px}
-.cards{display:flex;gap:14px;overflow:auto}
-.card{position:relative;flex:0 0 220px;background:#fff;border-radius:12px;overflow:hidden;text-decoration:none;color:#222}
-.card img{width:100%;height:130px;object-fit:cover}
-.card-body{padding:10px}
-.hover{position:absolute;inset:0;background:rgba(0,0,0,.92);color:#fff;padding:14px;opacity:0;transition:.2s;font-size:13px}
+.section h2{border-left:5px solid var(--accent);padding-left:10px;margin-bottom:14px}
+
+.rank-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.06)}
+.card img{width:100%;height:320px;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;background:#d91f26;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.rank{position:absolute;top:10px;right:10px;background:#111;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.body{padding:12px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{background:#eee;padding:3px 8px;border-radius:20px;font-size:11px}
+.bookshelf{background:linear-gradient(#8b5a2b,#6b4320);height:18px;border-radius:0 0 8px 8px}
+.hover{position:absolute;inset:0;background:rgba(0,0,0,.92);color:#fff;padding:16px;opacity:0;transition:.2s}
 .card:hover .hover{opacity:1}
-h2{border-left:5px solid var(--accent);padding-left:10px}
+@media(max-width:900px){.layout{display:block}.sidebar{width:100%;min-height:auto}.big{height:240px}}
 </style></head><body>
-<div id='auth'><div class='auth'><h1>No's Archive</h1><input id='pw'><button onclick='login()'>ENTER</button><p id='msg'></p></div></div>
-<div id='site'>
-<div class='header'><div>No's Archive</div><input class='search' placeholder='作品検索（仮）'></div>
-<div class='layout'>
-<div class='sidebar'>
-<a href='#illust'>ILLUSTRATION</a>
-<a href='#comic'>COMIC</a>
-<a href='#novel'>NOVEL</a>
-<a href='#mmd'>MMD</a>
+<div id="auth"><div class="auth"><h1>No's Archive</h1><input id="pw" type="password"><button onclick="login()">ENTER</button><p id="msg"></p></div></div>
+
+<div id="site">
+<div class="header"><div>No's Archive</div><input class="search" placeholder="作品検索（仮）"></div>
+<div class="layout">
+<nav class="sidebar">
+<a href="#ranking">RANKING</a>
+<a href="#comic">COMIC</a>
+</nav>
+<main class="main">
+
+<div class="big">
+<div class="slide active"><img src="images/comic01_s.png"></div>
+<div class="slide"><img src="images/comic02_s.png"></div>
+<div class="slide"><img src="images/comic03_s.png"></div>
+<div class="slide"><img src="images/comic04_s.png"></div>
+<div class="slide"><img src="images/comic05_s.png"></div>
 </div>
-<div class='main'>
-<div class='hero'><img src='images/comic01_s.png'></div>
 
-<div class='section' id='comic'><h2>COMIC</h2><div class='cards'>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>一晩だけのお願い</div><div class='hover'>一晩だけのお願いとひみつの恋の話。R18/31P。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>天使の話</div><div class='hover'>教祖という生を見に来た天使kgの話。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>α×α</div><div class='hover'>実力だけは認め合っているα×αなふたりの話。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>四神</div><div class='hover'>神様をやめるtyと大人になった子供の恋の話。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>一目ぼれ</div><div class='hover'>激重一目ぼれ一途漫画。</div></div>
-</div></div>
+<div class="thumbs">
+<div class="thumb active"><img src="images/comic01_s.png"></div>
+<div class="thumb"><img src="images/comic02_s.png"></div>
+<div class="thumb"><img src="images/comic03_s.png"></div>
+<div class="thumb"><img src="images/comic04_s.png"></div>
+<div class="thumb"><img src="images/comic05_s.png"></div>
+</div>
 
-<div class='section' id='novel'><h2>NOVEL</h2><div class='cards'>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>回逅、延縁</div><div class='hover'>天使と教祖の話。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>魂のゆりかご</div><div class='hover'>carrionパロ。研究員kgと研究対象ty。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>興味愛抱</div><div class='hover'>男性向け性癖アンソロ掲載作品。</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>LYCANTHROPE</div><div class='hover'>付き合いたてのkgとtyの話。</div></div>
-</div></div>
+<section id="ranking" class="section">
+<h2>人気ランキング</h2>
+<div class="rank-grid">
 
-<div class='section' id='illust'><h2>ILLUSTRATION</h2><div class='cards'><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 1</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 2</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 3</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 4</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 5</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 6</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 7</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 8</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 9</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 10</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 11</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 12</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 13</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 14</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 15</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 16</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 17</div><div class='hover'>Privatter掲載イラスト</div></div><div class='card'><img src='images/comic01_s.png'><div class='card-body'>Illustration 18</div><div class='hover'>Privatter掲載イラスト</div></div></div></div>
+<div class="card"><span class="badge">NEW</span><span class="rank">1</span><img src="images/comic01_p.png"><div class="body"><b>#door</b><div class="tags"><span class="tag">資料集</span><span class="tag">ホラー</span><span class="tag">SF</span></div></div><div class="hover">異常な記録媒体を巡る物語。追加資料あり。</div><div class="bookshelf"></div></div>
 
-<div class='section' id='mmd'><h2>MMD</h2><div class='cards'>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>キュートなカノジョ</div><div class='hover'>MMD作品</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>チョコレートミルク</div><div class='hover'>MMD作品</div></div>
-<div class='card'><img src='images/comic01_s.png'><div class='card-body'>ビーバー</div><div class='hover'>MMD作品</div></div>
-</div></div>
+<div class="card"><span class="badge">NEW</span><span class="rank">2</span><img src="images/comic02_p.png"><div class="body"><b>背いて、隠して、知らないで</b><div class="tags"><span class="tag">恋愛</span><span class="tag">社会人</span><span class="tag">切ない</span></div></div><div class="hover">一晩だけのお願いとひみつの恋の話。</div><div class="bookshelf"></div></div>
 
-</div></div></div>
+<div class="card"><span class="rank">3</span><img src="images/comic03_p.png"><div class="body"><b>眠らぬシリウス</b><div class="tags"><span class="tag">天使</span><span class="tag">教祖</span><span class="tag">幻想</span></div></div><div class="hover">黒髪の少年を見に来た天使の男の話。</div><div class="bookshelf"></div></div>
+
+<div class="card"><span class="rank">4</span><img src="images/comic04_p.png"><div class="body"><b>おやすみ、かみさま おはよう、あなた</b><div class="tags"><span class="tag">四神</span><span class="tag">中華風</span><span class="tag">転生</span></div></div><div class="hover">神様をやめた少年の生まれ変わりを待つ話。</div><div class="bookshelf"></div></div>
+
+<div class="card"><span class="badge">NEW</span><span class="rank">5</span><img src="images/comic05_p.png"><div class="body"><b>ONLY YOU!</b><div class="tags"><span class="tag">ギャグ</span><span class="tag">初恋</span><span class="tag">本屋</span></div></div><div class="hover">恋愛が下手なふたりの初恋こじらせコメディ。</div><div class="bookshelf"></div></div>
+
+</div>
+</section>
+
+<section id="comic" class="section"><h2>本棚</h2><div class="rank-grid">
+<div class="card"><img src="images/comic01_p.png"><div class="body">#door</div><div class="bookshelf"></div></div>
+<div class="card"><img src="images/comic02_p.png"><div class="body">背いて、隠して、知らないで</div><div class="bookshelf"></div></div>
+<div class="card"><img src="images/comic03_p.png"><div class="body">眠らぬシリウス</div><div class="bookshelf"></div></div>
+<div class="card"><img src="images/comic04_p.png"><div class="body">おやすみ、かみさま おはよう、あなた</div><div class="bookshelf"></div></div>
+<div class="card"><img src="images/comic05_p.png"><div class="body">ONLY YOU!</div><div class="bookshelf"></div></div>
+</div></section>
+
+</main></div></div>
 
 <script>
 const a=document.getElementById('auth'),s=document.getElementById('site');
 if(localStorage.archive_auth==='ok'){a.style.display='none';s.style.display='block'}
 function login(){if(document.getElementById('pw').value==='Lt0pp0hz'){localStorage.archive_auth='ok';a.style.display='none';s.style.display='block'}else{msg.textContent='パスワードが違います'}}
-</script></body></html>
+const slides=document.querySelectorAll('.slide'),thumbs=document.querySelectorAll('.thumb');let c=0;
+function show(i){slides[c].classList.remove('active');thumbs[c].classList.remove('active');c=i;slides[c].classList.add('active');thumbs[c].classList.add('active');}
+thumbs.forEach((t,i)=>t.onclick=()=>show(i));setInterval(()=>show((c+1)%slides.length),5000);
+</script>
+</body></html>
