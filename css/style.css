@@ -139,17 +139,33 @@ body{
 }
 
 .receipt::after{
+
   content:"";
+
   position:absolute;
-  left:0;right:0;
+
+  left:0;
+  right:0;
+
   bottom:-12px;
+
   height:12px;
 
   background:
-  linear-gradient(-45deg,transparent 8px,var(--paper) 0) bottom left,
-  linear-gradient(45deg,transparent 8px,var(--paper) 0) bottom right;
+  linear-gradient(
+    -45deg,
+    transparent 8px,
+    #FFFDF8 0
+  ) bottom left,
+
+  linear-gradient(
+    45deg,
+    transparent 8px,
+    #FFFDF8 0
+  ) bottom right;
 
   background-size:16px 16px;
+
   background-repeat:repeat-x;
 }
 
