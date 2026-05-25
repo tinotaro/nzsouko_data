@@ -45,11 +45,16 @@ body{
 
   z-index:1000;
 }
-
 .logo{
-  display:flex;
-  flex-direction:column;
-  line-height:.92;
+
+text-decoration:none;
+
+color:inherit;
+
+display:block;
+
+cursor:pointer;
+
 }
 
 .logo-main{
