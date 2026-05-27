@@ -1,0 +1,892 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>No's Archive Novel</title>
+
+<!-- ======================================
+     認証
+====================================== -->
+
+<script src="js/auth.js"></script>
+
+<!-- ======================================
+     Markdown
+====================================== -->
+
+<script src=
+"https://cdn.jsdelivr.net/npm/marked/marked.min.js">
+
+</script>
+
+<style>
+
+/* ======================================
+   Base
+====================================== */
+
+body{
+
+margin:0;
+
+background:#fff;
+color:#111;
+
+font-family:
+"Hiragino Mincho ProN",
+serif;
+
+overflow-x:auto;
+overflow-y:hidden;
+
+transition:.2s;
+
+}
+
+/* ======================================
+   Header
+====================================== */
+
+.topbar{
+
+height:64px;
+
+display:flex;
+
+justify-content:
+space-between;
+
+align-items:center;
+
+padding:0 20px;
+
+background:#000;
+color:#fff;
+
+}
+
+.topbar a{
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+/* ======================================
+   Viewer
+====================================== */
+
+#viewer{
+
+height:calc(100vh - 144px);
+
+overflow:auto;
+
+padding:
+40px 60px;
+
+box-sizing:border-box;
+
+}
+
+/* ======================================
+   Novel
+====================================== */
+
+#novel{
+
+white-space:pre-wrap;
+
+width:fit-content;
+
+min-width:100%;
+
+font-size:18px;
+
+line-height:1.9;
+
+letter-spacing:0.03em;
+
+padding-bottom:120px;
+
+}
+
+/* ======================================
+   縦書き
+====================================== */
+
+.vertical{
+
+writing-mode:
+vertical-rl;
+
+text-orientation:
+mixed;
+
+}
+
+/* ======================================
+   横書き
+====================================== */
+
+.horizontal{
+
+writing-mode:
+horizontal-tb;
+
+}
+
+/* ======================================
+   Theme
+====================================== */
+
+.theme-white{
+
+background:#fff;
+color:#111;
+
+}
+
+.theme-cream{
+
+background:#f8f1e7;
+color:#4b3425;
+
+}
+
+.theme-dark{
+
+background:#111;
+color:#eee;
+
+}
+
+/* ======================================
+   Font
+====================================== */
+
+.font-mincho{
+
+font-family:
+"Hiragino Mincho ProN",
+serif;
+
+}
+
+.font-gothic{
+
+font-family:
+"Hiragino Sans",
+sans-serif;
+
+}
+
+/* ======================================
+   Navigation
+====================================== */
+
+.nav{
+
+position:fixed;
+
+top:50%;
+
+transform:
+translateY(-50%);
+
+width:64px;
+height:64px;
+
+border:none;
+
+border-radius:999px;
+
+background:
+rgba(40,20,10,.82);
+
+border:
+1px solid #9b7a67;
+
+color:#f6eee7;
+
+font-size:34px;
+
+cursor:pointer;
+
+z-index:100;
+
+backdrop-filter:
+blur(6px);
+
+transition:.2s;
+
+}
+
+.nav:hover{
+
+background:
+rgba(80,50,35,.95);
+
+}
+.prev{
+
+left:20px;
+
+}
+
+.next{
+
+right:20px;
+
+}
+
+/* ======================================
+   Bottom Bar
+====================================== */
+
+.bottom-bar{
+
+position:fixed;
+
+bottom:0;
+left:0;
+right:0;
+
+background:#000;
+
+padding:12px;
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+z-index:100;
+
+}
+
+/* ======================================
+   Menu Group
+====================================== */
+
+.menu-group{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:6px 10px;
+
+border-radius:999px;
+
+background:
+rgba(255,255,255,.06);
+
+}
+
+/* ======================================
+   Buttons
+====================================== */
+
+.bottom-bar button{
+
+padding:8px 14px;
+
+border:none;
+
+border-radius:999px;
+
+background:#6b4b3e;
+
+border:
+1px solid #9b7a67;
+
+color:#f6eee7;
+
+font-size:13px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.bottom-bar button:hover{
+
+background:#7d5948;
+
+}
+
+/* ======================================
+   Page Number
+====================================== */
+
+#pageNum{
+
+color:#fff;
+
+font-weight:bold;
+
+padding:0 10px;
+
+}
+
+/* ======================================
+   Markdown
+====================================== */
+
+#novel h1{
+
+font-size:34px;
+
+margin:
+0
+0
+40px;
+
+}
+
+#novel h2{
+
+font-size:28px;
+
+margin:
+0
+0
+30px;
+
+}
+
+#novel p{
+
+margin:0;
+
+}
+
+/* ======================================
+   Mobile
+====================================== */
+
+@media(max-width:900px){
+
+#viewer{
+
+padding:
+20px;
+
+}
+
+#novel{
+
+font-size:18px;
+
+line-height:2.1;
+
+}
+
+.nav{
+
+width:46px;
+height:46px;
+
+font-size:24px;
+
+}
+
+.bottom-bar{
+
+gap:10px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body
+class="theme-white font-mincho">
+
+<!-- ======================================
+     Header
+====================================== -->
+
+<div class="topbar">
+
+<a href=
+"javascript:history.back()">
+
+← 戻る
+
+</a>
+
+<div id="title">
+
+Loading...
+
+</div>
+
+</div>
+
+<!-- ======================================
+     Navigation
+====================================== -->
+
+<button
+class="nav prev"
+onclick="prevPage()">
+
+‹
+
+</button>
+
+<button
+class="nav next"
+onclick="nextPage()">
+
+›
+
+</button>
+
+<!-- ======================================
+     Viewer
+====================================== -->
+
+<div id="viewer">
+
+<div
+id="novel"
+class="vertical">
+
+Loading...
+
+</div>
+
+</div>
+
+<!-- ======================================
+     Bottom Menu
+====================================== -->
+
+<div class="bottom-bar">
+
+<!-- 文字 -->
+
+<div class="menu-group">
+
+<button onclick="changeSize(2)">
+文字＋
+</button>
+
+<button onclick="changeSize(-2)">
+文字－
+</button>
+
+</div>
+
+<!-- 縦横 -->
+
+<div class="menu-group">
+
+<button onclick="setVertical()">
+縦書き
+</button>
+
+<button onclick="setHorizontal()">
+横書き
+</button>
+
+</div>
+
+<!-- 背景 -->
+
+<div class="menu-group">
+
+<button onclick="setWhite()">
+白
+</button>
+
+<button onclick="setCream()">
+クリーム
+</button>
+
+<button onclick="setDark()">
+黒
+</button>
+
+</div>
+
+<!-- フォント -->
+
+<div class="menu-group">
+
+<button onclick="setMincho()">
+明朝
+</button>
+
+<button onclick="setGothic()">
+ゴシック
+</button>
+
+</div>
+
+<!-- 栞 -->
+
+<div class="menu-group">
+
+<button onclick="saveBookmark()">
+栞
+</button>
+
+<div id="pageNum">
+
+1 / 1
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ======================================
+   Params
+====================================== */
+
+const params =
+new URLSearchParams(
+location.search
+);
+
+const novel =
+params.get("novel");
+
+/* ======================================
+   Variables
+====================================== */
+
+let pages = [];
+
+let currentPage = 0;
+
+let currentSize = 22;
+
+/* ======================================
+   Load
+====================================== */
+
+/* ======================================
+   Load
+====================================== */
+
+async function loadNovel(){
+
+try{
+
+const response =
+await fetch(
+`novel/${novel}/novel.md`
+);
+
+const text =
+await response.text();
+
+/* 改ページ */
+
+pages =
+text.split('[p]');
+
+const firstTitle =
+text.match(/^#\s(.+)/m);
+
+document
+.getElementById("title")
+.textContent =
+
+firstTitle
+? firstTitle[1]
+: novel;
+
+/* 栞復元 */
+
+const saved =
+localStorage.getItem(
+'novel_' + novel
+);
+
+if(saved){
+
+const resume =
+confirm(
+'栞から再開しますか？'
+);
+
+if(resume){
+
+currentPage =
+Number(saved);
+
+}
+
+}
+
+/* 初回描画 */
+
+renderPage();
+
+}
+
+catch(error){
+
+document
+.getElementById("novel")
+.innerHTML =
+
+"小説を読み込めませんでした";
+
+console.error(error);
+
+}
+
+}
+
+/* ======================================
+   Render
+====================================== */
+
+function renderPage(){
+
+const page =
+pages[currentPage] || "";
+
+document
+.getElementById("novel")
+.innerHTML =
+
+marked.parse(
+page.replace(/\n/g,'  \n')
+);
+
+document
+.getElementById("pageNum")
+.textContent =
+
+`${currentPage+1}
+ /
+${pages.length}`;
+
+/* ======================================
+   縦書き時は右スタート
+====================================== */
+
+const viewer =
+document.getElementById(
+'viewer'
+);
+
+if(
+document
+.getElementById('novel')
+.classList.contains(
+'vertical'
+)
+){
+
+viewer.scrollLeft =
+viewer.scrollWidth;
+
+}
+
+}
+
+/* ======================================
+   Next
+====================================== */
+
+function nextPage(){
+
+if(currentPage + 1 < pages.length){
+
+currentPage++;
+
+renderPage();
+
+}
+
+}
+
+/* ======================================
+   Prev
+====================================== */
+
+function prevPage(){
+
+if(currentPage > 0){
+
+currentPage--;
+
+renderPage();
+
+}
+
+}
+
+/* ======================================
+   Keyboard
+====================================== */
+
+document.addEventListener(
+'keydown',
+e=>{
+
+if(e.key === 'ArrowLeft'){
+
+nextPage();
+
+}
+
+if(e.key === 'ArrowRight'){
+
+prevPage();
+
+}
+
+}
+);
+
+/* ======================================
+   Font Size
+====================================== */
+
+function changeSize(num){
+
+currentSize += num;
+
+document
+.getElementById("novel")
+.style.fontSize =
+
+currentSize + 'px';
+
+}
+
+/* ======================================
+   Writing Mode
+====================================== */
+
+function setVertical(){
+
+document
+.getElementById("novel")
+.className =
+'vertical';
+
+}
+
+function setHorizontal(){
+
+document
+.getElementById("novel")
+.className =
+'horizontal';
+
+}
+
+/* ======================================
+   Theme
+====================================== */
+
+function setWhite(){
+
+document.body.className =
+'theme-white font-mincho';
+
+}
+
+function setCream(){
+
+document.body.className =
+'theme-cream font-mincho';
+
+}
+
+function setDark(){
+
+document.body.className =
+'theme-dark font-mincho';
+
+}
+
+/* ======================================
+   Font
+====================================== */
+
+function setMincho(){
+
+document.body.classList.remove(
+'font-gothic'
+);
+
+document.body.classList.add(
+'font-mincho'
+);
+
+}
+
+function setGothic(){
+
+document.body.classList.remove(
+'font-mincho'
+);
+
+document.body.classList.add(
+'font-gothic'
+);
+
+}
+
+/* ======================================
+   Bookmark
+====================================== */
+
+function saveBookmark(){
+
+localStorage.setItem(
+
+'novel_' + novel,
+
+currentPage
+
+);
+
+alert('栞を保存しました');
+
+}
+
+/* ======================================
+   Start
+====================================== */
+
+loadNovel();
+
+</script>
+
+</body>
+
+</html>
+

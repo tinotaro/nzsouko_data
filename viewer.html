@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>No's Archive Reader</title>
+
+<!-- パス認証 -->
+
+<script src="js/auth.js"></script>
+
+<style>
+
+body{
+
+margin:0;
+background:#111;
+font-family:sans-serif;
+overflow:hidden;
+
+}
+
+/* =====================
+   Topbar
+===================== */
+
+.topbar{
+
+height:64px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 20px;
+
+background:#000;
+color:#fff;
+
+}
+
+.topbar a{
+
+color:#fff;
+text-decoration:none;
+
+}
+
+/* =====================
+   Viewer
+===================== */
+
+#viewer{
+
+height:calc(100vh - 124px);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.page{
+
+max-height:100%;
+max-width:48%;
+
+object-fit:contain;
+
+box-shadow:
+0 4px 20px rgba(0,0,0,.4);
+
+background:#fff;
+
+border-radius:8px;
+
+}
+
+/* =====================
+   Buttons
+===================== */
+
+.nav{
+
+position:fixed;
+
+top:50%;
+transform:translateY(-50%);
+
+width:60px;
+height:60px;
+
+border:none;
+border-radius:999px;
+
+background:rgba(255,255,255,.15);
+
+color:#fff;
+
+font-size:30px;
+
+cursor:pointer;
+
+backdrop-filter:blur(4px);
+
+z-index:100;
+
+}
+
+.prev{
+
+left:20px;
+
+}
+
+.next{
+
+right:20px;
+
+}
+
+.nav:hover{
+
+background:rgba(255,255,255,.28);
+
+}
+
+/* =====================
+   Bottom Bar
+===================== */
+
+.bottom-bar{
+
+position:fixed;
+
+bottom:0;
+left:0;
+right:0;
+
+height:60px;
+
+background:#000;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+gap:30px;
+
+color:#fff;
+
+z-index:100;
+
+}
+
+.bottom-bar button{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:999px;
+
+background:#ff7bac;
+
+color:#fff;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+#pageNum{
+
+font-weight:bold;
+
+}
+
+
+/* =====================
+   Mobile
+===================== */
+
+@media(max-width:900px){
+
+#viewer{
+
+padding:10px;
+
+}
+
+.page{
+
+max-width:100%;
+
+}
+
+#page1{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================
+   Header
+===================== -->
+
+<div class="topbar">
+
+<a href="javascript:history.back()">
+← 戻る
+</a>
+
+<div id="title">
+Loading...
+</div>
+
+</div>
+
+<!-- =====================
+   Navigation
+===================== -->
+
+<button
+class="nav prev"
+onclick="prevPage()">
+
+‹
+
+</button>
+
+<button
+class="nav next"
+onclick="nextPage()">
+
+›
+
+</button>
+
+<!-- =====================
+   Viewer
+===================== -->
+
+<div id="viewer">
+
+<!-- 左ページ -->
+
+<img
+id="page1"
+class="page">
+
+<!-- 右ページ -->
+
+<img
+id="page2"
+class="page">
+
+</div>
+
+<!-- =====================
+   Bottom
+===================== -->
+
+<div class="bottom-bar">
+
+<button onclick="toggleBookmark()">
+
+栞を挟む
+
+</button>
+
+<button onclick="clearBookmark()"> 栞を削除 </button>
+
+<div id="pageNum">
+
+1 / 1
+
+</div>
+
+</div>
+
+<script>
+
+let pages = [];
+
+let current = 0;
+
+/* =====================
+   Bookmark Restore
+===================== */
+
+const saved =
+localStorage.getItem(
+'bookmark_' + location.search
+);
+
+if(saved){
+
+const resume =
+confirm(
+'栞から再開しますか？'
+);
+
+if(resume){
+
+current = Number(saved);
+
+}
+
+}
+
+/* =====================
+   Load Comic
+===================== */
+
+async function loadComic(){
+
+const params =
+new URLSearchParams(
+location.search
+);
+
+const comic =
+params.get("comic");
+
+if(!comic){
+
+alert("作品が指定されていません");
+
+return;
+
+}
+
+try{
+
+const response =
+await fetch(
+`comic/${comic}/data.json`
+);
+
+const data =
+await response.json();
+
+document
+.getElementById("title")
+.textContent =
+data.title;
+
+pages = data.pages.map(
+p=>`comic/${comic}/${p}`
+);
+
+renderPages();
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert("作品を読み込めませんでした");
+
+}
+
+}
+
+/* =====================
+   Render
+===================== */
+
+function renderPages(){
+
+const left =
+document.getElementById("page1");
+
+const right =
+document.getElementById("page2");
+
+/* 表紙 */
+
+if(current === 0){
+
+right.src =
+pages[0] || "";
+
+left.style.display =
+'none';
+
+}
+
+/* 見開き */
+
+else if(
+pages[current]
+.includes('-')
+){
+
+right.src =
+pages[current];
+
+left.style.display =
+'none';
+
+}
+
+/* 通常 */
+
+else{
+
+left.style.display =
+'block';
+
+/* 右ページ */
+
+right.src =
+pages[current] || "";
+
+/* 左ページ */
+
+left.src =
+pages[current+1] || "";
+
+}
+
+/* ページ番号 */
+
+document
+.getElementById("pageNum")
+.textContent =
+
+`${current+1}
+ /
+${pages.length}`;
+
+}
+
+/* =====================
+   Next
+===================== */
+
+function nextPage(){
+
+/* 表紙 */
+
+if(current === 0){
+
+current = 1;
+
+}
+
+/* 見開き */
+
+else if(
+pages[current]
+.includes('-')
+){
+
+current += 1;
+
+}
+
+/* 通常 */
+
+else if(current + 2 < pages.length){
+
+current += 2;
+
+}
+
+renderPages();
+
+}
+
+
+/* =====================
+   Prev
+===================== */
+
+function prevPage(){
+
+if(current === 1){
+
+current = 0;
+
+}
+
+/* ひとつ前が見開き */
+
+else if(
+pages[current-1]
+&&
+pages[current-1]
+.includes('-')
+){
+
+current -= 1;
+
+}
+
+/* 通常 */
+
+else if(current - 2 >= 0){
+
+current -= 2;
+
+}
+
+renderPages();
+
+}
+
+/* =====================
+   Bookmark
+===================== */
+
+function toggleBookmark(){
+
+localStorage.setItem(
+
+'bookmark_' + location.search,
+
+current
+
+);
+
+alert('栞を保存しました');
+
+}
+
+/* =====================
+   Keyboard
+===================== */
+
+document.addEventListener(
+'keydown',
+e=>{
+
+/* ← 次ページ */
+
+if(e.key === 'ArrowLeft'){
+
+nextPage();
+
+}
+
+/* → 前ページ */
+
+if(e.key === 'ArrowRight'){
+
+prevPage();
+
+}
+
+}
+);
+
+/* =====================
+   Start
+===================== */
+
+loadComic();
+
+</script>
+
+</body>
+
+</html>
+
