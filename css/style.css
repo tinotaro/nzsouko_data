@@ -1210,6 +1210,81 @@ box-shadow:
 
 @media(max-width:900px){
 
+/* sidebar消す */
+
+.sidebar{
+display:none;
+}
+
+/* main全幅 */
+
+.main{
+width:100%;
+padding:14px;
+}
+
+/* header */
+
+.header{
+
+padding:14px 16px;
+
+}
+
+/* カルーセル横スクロール */
+
+.hero-slider{
+
+display:flex;
+
+gap:12px;
+
+overflow-x:auto;
+
+scroll-snap-type:x mandatory;
+
+padding-bottom:8px;
+
+background:none;
+
+box-shadow:none;
+
+}
+
+/* スクロールバー消す */
+
+.hero-slider::-webkit-scrollbar{
+display:none;
+}
+
+/* バナー */
+
+.hero-slide{
+
+min-width:92%;
+
+scroll-snap-align:center;
+
+flex-shrink:0;
+
+}
+
+/* 画像 */
+
+.hero-slide img{
+
+width:100%;
+
+height:auto;
+
+border-radius:22px;
+
+display:block;
+
+}
+
+}
+
 #viewer{
 
 grid-template-columns:
