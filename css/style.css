@@ -1592,27 +1592,6 @@ display:block;
 
 }
 
-.cover-thumbs img{
-
-width:60px;
-
-height:60px;
-
-object-fit:cover;
-
-border-radius:8px;
-
-cursor:pointer;
-
-border:2px solid transparent;
-
-transition:.2s;
-
-background:#fff;
-
-flex-shrink:0;
-
-}
 
 .cover-thumbs img:hover{
 
@@ -1660,16 +1639,6 @@ margin-bottom:56px;
 
 }
 
-.work-main{
-
-display:flex;
-
-flex-direction:column;
-
-gap:22px;
-
-}
-
 .section{
 
 margin-top:56px;
@@ -1682,6 +1651,16 @@ margin-top:24px;
 
 }
 .section h2{
+
+margin-bottom:18px;
+
+}
+.hero + .section{
+
+margin-top:80px;
+
+}
+.work-main > *{
 
 margin-bottom:18px;
 
