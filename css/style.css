@@ -650,7 +650,125 @@ margin-top:18px;
   border-radius:12px;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
+/* タイトル行 */
 
+.title-row{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+margin-bottom:10px;
+
+}
+
+/* 専売 */
+
+.exclusive{
+
+background:#ffd84d;
+
+color:#111;
+
+font-size:13px;
+
+font-weight:700;
+
+padding:4px 8px;
+
+border-radius:4px;
+
+}
+
+/* 作者 */
+
+.maker-row{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+margin-bottom:18px;
+
+font-size:14px;
+
+}
+
+/* 作者名 */
+
+.maker-name{
+
+font-weight:700;
+
+color:#3366cc;
+
+text-decoration:none;
+
+}
+
+/* フォローボタン */
+
+.follow-btn{
+
+border:1px solid #ccc;
+
+background:#fff;
+
+padding:5px 12px;
+
+border-radius:4px;
+
+cursor:pointer;
+
+font-size:13px;
+
+}
+
+/* 全年齢 */
+
+.age-all{
+
+background:#9acd32;
+
+color:#fff;
+
+padding:3px 8px;
+
+border-radius:4px;
+
+font-size:12px;
+
+font-weight:700;
+
+}
+
+/* タグ */
+
+.tag-list{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.tag-list span{
+
+background:#f3f3f3;
+
+padding:4px 10px;
+
+border-radius:999px;
+
+font-size:12px;
+
+}
 /* Mobile */
 
 @media (max-width:900px){
