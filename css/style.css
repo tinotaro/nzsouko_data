@@ -1532,13 +1532,15 @@ gap:10px;
 
 margin-top:12px;
 
+flex-wrap:nowrap;
+
 }
 
 .cover-thumbs img{
 
-width:56px;
+width:60px;
 
-height:56px;
+height:60px;
 
 object-fit:cover;
 
@@ -1552,6 +1554,8 @@ transition:.2s;
 
 background:#fff;
 
+flex-shrink:0;
+
 }
 
 .cover-thumbs img:hover{
@@ -1559,10 +1563,5 @@ background:#fff;
 border-color:#ff7bac;
 
 transform:translateY(-2px);
-
-}
-.cover-thumbs img.active{
-
-border-color:#ff7bac;
 
 }
