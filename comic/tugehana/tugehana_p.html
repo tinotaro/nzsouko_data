@@ -92,11 +92,34 @@ class="message-img">
 
   <!-- 表紙 -->
 
-  <div class="cover">
+<div class="cover">
 
-    <img src="tugehana_p.png" alt="告げよ春、秘めよ華">
+<img
+id="mainCover"
+src="tugehana_p.png"
+alt="告げよ春、秘めよ華">
 
-  </div>
+<div class="cover-thumbs">
+
+<img
+src="tugehana_p.png"
+onclick="changeCover(this)">
+
+<img
+src="sample01.png"
+onclick="changeCover(this)">
+
+<img
+src="sample02.png"
+onclick="changeCover(this)">
+
+<img
+src="sample03.png"
+onclick="changeCover(this)">
+
+</div>
+
+</div>
 
   <!-- 作品情報 -->
 
@@ -300,6 +323,16 @@ class="read-btn">
 </main>
 
 </div>
+<script>
 
+function changeCover(img){
+
+document
+.getElementById("mainCover")
+.src = img.src;
+
+}
+
+</script>
 </body>
 </html>
