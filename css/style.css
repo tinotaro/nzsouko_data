@@ -265,17 +265,50 @@ border-collapse:collapse;
 margin:18px 0;
 }
 
+.work-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin:18px 0;
+
+background:none;
+
+border:none;
+
+}
+
 .work-table th{
+
 width:120px;
-background:#fafafa;
-border:1px solid #eee;
-padding:10px;
+
+padding:12px 10px;
+
 text-align:left;
+
+font-weight:700;
+
+color:#444;
+
+background:none;
+
+border:none;
+
+border-bottom:1px solid #e7e7e7;
+
 }
 
 .work-table td{
-border:1px solid #eee;
-padding:10px;
+
+padding:12px 10px;
+
+border:none;
+
+border-bottom:1px solid #e7e7e7;
+
+background:none;
+
 }
 
 .purchase-box{
