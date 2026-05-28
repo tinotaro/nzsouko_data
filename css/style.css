@@ -238,6 +238,16 @@ cursor:pointer;
 
 /* Hero */
 
+.work-head{
+
+margin-bottom:24px;
+
+padding-bottom:16px;
+
+border-bottom:
+1px solid #ddd;
+
+}
 .hero{
 
 display:grid;
@@ -634,7 +644,15 @@ border-color:#a58bc4;
   color:#666;
 }
 .cover{
+
 width:340px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
 }
 
 .cover img{
@@ -1541,13 +1559,36 @@ cursor:pointer;
 /* 説明ページカルーセル */
 .cover-thumbs{
 
-display:flex;
+display:grid;
 
-gap:10px;
+grid-template-columns:
+repeat(4,1fr);
 
-margin-top:12px;
+gap:8px;
 
-flex-wrap:nowrap;
+width:100%;
+
+}
+
+.cover-thumbs img{
+
+width:100%;
+
+aspect-ratio:1/1;
+
+object-fit:cover;
+
+border-radius:8px;
+
+cursor:pointer;
+
+border:2px solid transparent;
+
+transition:.2s;
+
+background:#fff;
+
+display:block;
 
 }
 
