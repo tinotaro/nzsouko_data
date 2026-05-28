@@ -1621,3 +1621,25 @@ border-color:#ff7bac;
 transform:translateY(-2px);
 
 }
+
+/* 作品ページタイトル */
+.work-head{
+
+margin-bottom:24px;
+
+padding-bottom:18px;
+
+border-bottom:
+1px solid #ddd;
+
+}
+
+.work-head h1{
+
+font-size:34px;
+
+line-height:1.3;
+
+margin:0;
+
+}
