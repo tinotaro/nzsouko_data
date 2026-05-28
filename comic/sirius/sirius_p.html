@@ -92,25 +92,73 @@ class="message-img">
 
   <!-- 表紙 -->
 
-  <div class="cover">
+<div class="cover">
 
-    <img src="sirius_p.png" alt="眠らぬシリウス">
+<img
+id="mainCover"
+src="sirius_p.png"
+alt="眠らぬシリウス">
 
-  </div>
+<div class="cover-thumbs">
+
+<img
+src="sirius_p.png"
+onclick="changeCover(this)">
+
+<img
+src="sample01.png"
+onclick="changeCover(this)">
+
+<img
+src="sample02.png"
+onclick="changeCover(this)">
+
+<img
+src="sample03.png"
+onclick="changeCover(this)">
+
+</div>
+
+</div>
 
   <!-- 作品情報 -->
 
   <div class="work-main">
 
     <div class="badge">
-      NEW RELEASE
+      作品情報
     </div>
 
-    <h1>眠らぬシリウス</h1>
+    <div class="title-row">
 
-    <div class="catch">
-      教祖という生を見に来た天使kgの話
-    </div>
+<span class="exclusive">
+専売
+</span>
+
+<h1>
+眠らぬシリウス
+</h1>
+
+</div>
+
+<div class="maker-row">
+
+<span class="maker-label">
+作者名：
+</span>
+
+<a href="../../about.html"
+class="maker-name">
+
+No's
+
+</a>
+
+<button class="follow-btn">
+フォローする
+</button>
+
+</div>
 
     <div class="tags">
 
@@ -118,29 +166,46 @@ class="message-img">
 
     </div>
 
-    <table class="work-table">
+<table class="work-table">
 
-      <tr>
-        <th>注意書き/要素</th>
-        <td>洗脳描写</td>
-      </tr>
+<tr>
+<th>販売日</th>
+<td>2026年05月27日</td>
+</tr>
 
-      <tr>
-        <th>形式</th>
-        <td>漫画</td>
-      </tr>
+<tr>
+<th>シリーズ名</th>
+<td>About us!</td>
+</tr>
 
-      <tr>
-        <th>ページ数</th>
-        <td>48P</td>
-      </tr>
+<tr>
+<th>年齢指定</th>
+<td><span class="age-all">全年齢</span></td>
+</tr>
 
-      <tr>
-        <th>更新日</th>
-        <td>2026.05.28</td>
-      </tr>
+<tr>
+<th>作品形式</th>
+<td>漫画</td>
+</tr>
 
-    </table>
+<tr>
+<th>ページ数</th>
+<td>30P</td>
+</tr>
+
+<tr>
+<th>作品タグ</th>
+
+<td class="tag-list">
+
+<span>花吐き病</span>
+<span>漫画</span>
+
+</td>
+
+</tr>
+
+</table>
 
     <p class="summary">
 
@@ -211,7 +276,7 @@ class="message-img">
   <div class="coupon-box">
 
     <div class="coupon-title">
-      一番お得なクーポン利用価格
+      一番お得なクーポン(嘘)適応時
     </div>
 
     <div class="coupon-price">
@@ -219,7 +284,7 @@ class="message-img">
     </div>
 
     <div class="coupon-note">
-      ※作者の気分により常時100％OFF
+       ※お遊びサイトのため常時100％OFF
     </div>
 
   </div>
@@ -229,7 +294,7 @@ class="message-img">
     <div>本文 48P</div>
     <div>最終更新 2026.05.28</div>
     <div>状態 公開中</div>
-    <div>追加資料 あり</div>
+    <div>後日談　有</div>
 
   </div>
 
@@ -258,6 +323,16 @@ class="read-btn">
 </main>
 
 </div>
+<script>
 
+function changeCover(img){
+
+document
+.getElementById("mainCover")
+.src = img.src;
+
+}
+
+</script>
 </body>
 </html>
