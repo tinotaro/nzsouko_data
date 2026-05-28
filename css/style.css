@@ -300,7 +300,12 @@ border:none;
 border-bottom:1px solid #e7e7e7;
 
 }
+.work-table th,
+.work-table td{
 
+padding:14px 16px;
+
+}
 .work-table td{
 
 padding:12px 10px;
@@ -663,7 +668,7 @@ box-shadow:
 }
 
 .work-main{
-min-width:0;
+padding-top:8px;
 }
 
 .badge{
